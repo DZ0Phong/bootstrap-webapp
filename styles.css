@@ -1,0 +1,120 @@
+/* Universal and Body */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+    /* This ensures the footer stays at the bottom when content is short */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Navbar */
+.navbar-brand {
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    /* Using a vibrant gradient placeholder or image */
+    background: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80') no-repeat center center;
+    background-size: cover;
+    color: white;
+    min-height: 80vh;
+    /* Large banner area */
+}
+
+/* Dark overlay to make text readable */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.hero .container {
+    padding: 50px 20px;
+}
+
+.hero .cta-btn {
+    font-weight: 600;
+    padding: 12px 30px;
+    border-radius: 30px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero .cta-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Footer links */
+.social-icons a {
+    transition: color 0.3s;
+    text-decoration: none;
+}
+
+.social-icons a:hover {
+    color: #0dcaf0 !important;
+    /* Info color */
+}
+
+/* Scroll to Top Button */
+#scrollTopBtn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: none;
+    /* Hidden by default */
+    z-index: 99;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    line-height: 24px;
+    padding: 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+#scrollTopBtn:hover {
+    transform: translateY(-3px);
+    background-color: #0b5ed7;
+}
+
+/* Auth Page specific (Login/Signup) */
+.auth-page {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.auth-card {
+    transition: all 0.3s ease-in-out;
+}
+
+/* Simple fade animation for switching */
+.fade-in {
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
