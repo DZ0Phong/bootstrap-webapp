@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
             e.preventDefault(); // Prevent actual form submission
             alert("Welcome to home page!");
             // Redirect to homepage
-            window.location.href = "index.html";
+            window.location.href = "task1-home.html";
         });
     }
 });
