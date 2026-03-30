@@ -188,6 +188,14 @@
             margin-top: 28px;
         }
 
+        .question-hint {
+            min-height: 24px;
+            margin-top: 4px;
+            color: #c0392b;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
         .result-icon {
             font-size: 2.2rem;
             margin-bottom: 10px;
@@ -262,6 +270,22 @@
             color: var(--danger-text);
         }
 
+        .confirm-summary {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 18px 20px;
+        }
+
+        .confirm-summary strong {
+            color: var(--text-main);
+        }
+
+        .confirm-missing {
+            color: var(--danger-text);
+            font-weight: 600;
+        }
+
         .hidden {
             display: none !important;
         }
@@ -321,6 +345,7 @@
                     </div>
                     <h2 class="question-text" id="question-text">Question text</h2>
                     <div id="answers-list"></div>
+                    <div class="question-hint" id="question-hint"></div>
                     <div class="quiz-actions">
                         <button type="button" class="btn btn-secondary primary-btn" id="prev-btn">Previous</button>
                         <button type="button" class="btn btn-primary primary-btn ms-auto" id="next-btn">Next</button>
@@ -361,6 +386,29 @@
         </div>
     </main>
 
+    <div class="modal fade" id="submitConfirmModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 rounded-4">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold">Confirm Submit</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body pt-2">
+                    <p class="text-muted mb-3">Please review your exam progress before submitting.</p>
+                    <div class="confirm-summary">
+                        <div class="mb-2"><strong id="confirm-answered-count">Answered: 0 / 10</strong></div>
+                        <div class="confirm-missing" id="confirm-missing-list">Missing questions: None</div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button type="button" class="btn btn-outline-secondary primary-btn" data-bs-dismiss="modal">Continue Exam</button>
+                    <button type="button" class="btn btn-primary primary-btn" id="confirm-submit-btn">Submit Exam</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         const filters = ["All", "Java", "Python", "C++"];
 
@@ -557,6 +605,7 @@
         const progressBar = document.getElementById("progress-bar");
         const questionText = document.getElementById("question-text");
         const answersList = document.getElementById("answers-list");
+        const questionHint = document.getElementById("question-hint");
         const prevBtn = document.getElementById("prev-btn");
         const nextBtn = document.getElementById("next-btn");
         const resultScore = document.getElementById("result-score");
@@ -564,6 +613,9 @@
         const resultStatus = document.getElementById("result-status");
         const reviewSummary = document.getElementById("review-summary");
         const reviewList = document.getElementById("review-list");
+        const confirmAnsweredCount = document.getElementById("confirm-answered-count");
+        const confirmMissingList = document.getElementById("confirm-missing-list");
+        const submitConfirmModal = new bootstrap.Modal(document.getElementById("submitConfirmModal"));
 
         function renderFilters() {
             filterBar.innerHTML = filters.map(filter => `
@@ -637,11 +689,22 @@
             renderQuestion();
         }
 
+        function getAnsweredCount() {
+            return state.answers.filter(answer => answer !== null).length;
+        }
+
+        function getMissingQuestions() {
+            return state.answers
+                .map((answer, index) => answer === null ? index + 1 : null)
+                .filter(questionNumber => questionNumber !== null);
+        }
+
         function renderQuestion() {
             const totalQuestions = state.exam.questions.length;
             const currentNumber = state.currentQuestionIndex + 1;
             const progress = Math.round((currentNumber / totalQuestions) * 100);
             const currentQuestion = state.exam.questions[state.currentQuestionIndex];
+            const currentAnswer = state.answers[state.currentQuestionIndex];
 
             questionCounter.textContent = `Question ${currentNumber} / ${totalQuestions}`;
             questionPercent.textContent = `${progress}%`;
@@ -663,7 +726,11 @@
             });
 
             prevBtn.disabled = state.currentQuestionIndex === 0;
+            nextBtn.disabled = currentAnswer === null;
             nextBtn.textContent = currentNumber === totalQuestions ? "Submit" : "Next";
+            questionHint.textContent = currentAnswer === null
+                ? "Please choose an answer before continuing."
+                : "";
         }
 
         function finishExam() {
@@ -684,6 +751,19 @@
                 : `<span class="status-pill fail"><i class="bi bi-x-circle-fill"></i>Needs Improvement</span>`;
 
             showView("result");
+        }
+
+        function openSubmitConfirmation() {
+            const totalQuestions = state.exam.questions.length;
+            const answeredCount = getAnsweredCount();
+            const missingQuestions = getMissingQuestions();
+
+            confirmAnsweredCount.textContent = `Answered: ${answeredCount} / ${totalQuestions}`;
+            confirmMissingList.textContent = missingQuestions.length > 0
+                ? `Missing questions: ${missingQuestions.join(", ")}`
+                : "Missing questions: None";
+
+            submitConfirmModal.show();
         }
 
         function renderReview() {
@@ -727,8 +807,13 @@
         });
 
         nextBtn.addEventListener("click", () => {
+            if (state.answers[state.currentQuestionIndex] === null) {
+                questionHint.textContent = "Please choose an answer before continuing.";
+                return;
+            }
+
             if (state.currentQuestionIndex === state.exam.questions.length - 1) {
-                finishExam();
+                openSubmitConfirmation();
                 return;
             }
 
@@ -741,6 +826,10 @@
         document.getElementById("catalog-btn").addEventListener("click", () => showView("catalog"));
         document.getElementById("review-retake-btn").addEventListener("click", () => startExam(state.exam));
         document.getElementById("review-catalog-btn").addEventListener("click", () => showView("catalog"));
+        document.getElementById("confirm-submit-btn").addEventListener("click", () => {
+            submitConfirmModal.hide();
+            finishExam();
+        });
 
         renderFilters();
         renderCatalog();
