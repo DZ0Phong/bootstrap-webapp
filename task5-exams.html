@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap WebApp - Skill Exams</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --page-bg: #f4f7fb;
+            --nav-bg: #23272b;
+            --primary: #0d6efd;
+            --primary-dark: #0b5ed7;
+            --border: #d7dfeb;
+            --text-main: #162033;
+            --text-muted: #667085;
+            --success-bg: #e8f7ee;
+            --success-text: #18794e;
+            --danger-bg: #fff0f0;
+            --danger-text: #c0392b;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--page-bg);
+            color: var(--text-main);
+            min-height: 100vh;
+        }
+
+        .topbar {
+            background: var(--nav-bg);
+            padding: 22px 0;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+        }
+
+        .topbar-title {
+            color: #fff;
+            font-weight: 800;
+            font-size: 1.95rem;
+            margin: 0;
+        }
+
+        .page-shell {
+            padding: 36px 0 72px;
+        }
+
+        .back-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            color: var(--primary-dark);
+        }
+
+        .filter-bar {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-bottom: 34px;
+        }
+
+        .filter-btn {
+            min-width: 82px;
+            border-radius: 12px;
+            padding: 10px 20px;
+            font-weight: 600;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            background: #fff;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            color: #fff;
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .exam-card {
+            background: #fff;
+            border: 1px solid #d4dae4;
+            border-radius: 14px;
+            padding: 30px 26px;
+            text-align: center;
+            height: 100%;
+            box-shadow: 0 10px 22px rgba(15, 23, 42, 0.04);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .exam-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 36px rgba(15, 23, 42, 0.08);
+        }
+
+        .exam-title {
+            font-size: 1.85rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .exam-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #172b4d;
+            margin-bottom: 22px;
+            min-height: 76px;
+        }
+
+        .primary-btn {
+            border-radius: 10px;
+            padding: 10px 22px;
+            font-weight: 700;
+        }
+
+        .quiz-wrapper,
+        .result-wrapper,
+        .review-wrapper {
+            max-width: 860px;
+            margin: 48px auto 0;
+        }
+
+        .panel-card {
+            background: #fff;
+            border-radius: 24px;
+            padding: 36px 38px;
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.09);
+        }
+
+        .question-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 18px;
+            font-weight: 800;
+            font-size: 1.05rem;
+        }
+
+        .progress {
+            height: 24px;
+            border-radius: 999px;
+            background: #e4e9f0;
+            margin-bottom: 28px;
+        }
+
+        .progress-bar {
+            font-weight: 700;
+        }
+
+        .question-text {
+            font-size: 1.95rem;
+            line-height: 1.4;
+            margin-bottom: 28px;
+        }
+
+        .answer-option {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px 18px;
+            margin-bottom: 16px;
+            cursor: pointer;
+            font-size: 1.05rem;
+            transition: all 0.2s ease;
+        }
+
+        .answer-option:hover {
+            border-color: var(--primary);
+            background: #f5f9ff;
+        }
+
+        .answer-option.selected {
+            border-color: var(--primary);
+            background: #eaf2ff;
+            box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.08);
+        }
+
+        .quiz-actions {
+            display: flex;
+            justify-content: space-between;
+            gap: 14px;
+            margin-top: 28px;
+        }
+
+        .result-icon {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .result-title {
+            font-size: 2.9rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .result-score,
+        .result-percent {
+            font-size: 1.55rem;
+            margin-bottom: 16px;
+        }
+
+        .review-item {
+            border: 1px solid #e2e8f0;
+            border-radius: 18px;
+            padding: 24px;
+            margin-bottom: 18px;
+            background: #fff;
+        }
+
+        .review-question {
+            font-weight: 700;
+            font-size: 1.08rem;
+            margin-bottom: 14px;
+        }
+
+        .review-answer {
+            border-radius: 12px;
+            padding: 12px 14px;
+            margin-bottom: 10px;
+            font-size: 0.97rem;
+        }
+
+        .review-answer.correct {
+            background: var(--success-bg);
+            color: var(--success-text);
+        }
+
+        .review-answer.wrong {
+            background: var(--danger-bg);
+            color: var(--danger-text);
+        }
+
+        .review-answer.neutral {
+            background: #f8fafc;
+            color: #475467;
+        }
+
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border-radius: 999px;
+            padding: 8px 14px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .status-pill.pass {
+            background: var(--success-bg);
+            color: var(--success-text);
+        }
+
+        .status-pill.fail {
+            background: var(--danger-bg);
+            color: var(--danger-text);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        @media (max-width: 768px) {
+            .topbar-title {
+                font-size: 1.55rem;
+            }
+
+            .panel-card {
+                padding: 24px 20px;
+                border-radius: 20px;
+            }
+
+            .question-text,
+            .result-title {
+                font-size: 1.9rem;
+            }
+
+            .quiz-actions {
+                flex-direction: column;
+            }
+
+            .quiz-actions .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="topbar">
+        <div class="container">
+            <h1 class="topbar-title" id="page-title">Tech Skill Exams</h1>
+        </div>
+    </header>
+
+    <main class="page-shell">
+        <div class="container">
+            <div class="mb-4">
+                <a href="index.html" class="back-link"><i class="bi bi-arrow-left me-2"></i>Back to Dashboard</a>
+            </div>
+
+            <section id="catalog-view">
+                <div class="filter-bar" id="filter-bar"></div>
+                <div class="row g-4" id="exam-grid"></div>
+            </section>
+
+            <section id="quiz-view" class="quiz-wrapper hidden">
+                <div class="panel-card">
+                    <div class="question-meta">
+                        <div id="question-counter">Question 1 / 10</div>
+                        <div id="question-percent">10%</div>
+                    </div>
+                    <div class="progress" role="progressbar" aria-label="Exam progress" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar bg-primary" id="progress-bar" style="width: 10%;"></div>
+                    </div>
+                    <h2 class="question-text" id="question-text">Question text</h2>
+                    <div id="answers-list"></div>
+                    <div class="quiz-actions">
+                        <button type="button" class="btn btn-secondary primary-btn" id="prev-btn">Previous</button>
+                        <button type="button" class="btn btn-primary primary-btn ms-auto" id="next-btn">Next</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="result-view" class="result-wrapper hidden">
+                <div class="panel-card text-center">
+                    <div class="result-icon"><i class="bi bi-trophy-fill text-warning"></i></div>
+                    <div class="result-title">Exam Completed!</div>
+                    <div class="result-score" id="result-score">Your Score: 0 / 10</div>
+                    <div class="result-percent" id="result-percent">Percentage: 0%</div>
+                    <div id="result-status"></div>
+                    <div class="d-flex flex-wrap justify-content-center gap-3 mt-4">
+                        <button type="button" class="btn btn-primary primary-btn" id="review-btn">Review Exam</button>
+                        <button type="button" class="btn btn-outline-primary primary-btn" id="retake-btn">Retake Exam</button>
+                        <button type="button" class="btn btn-outline-secondary primary-btn" id="catalog-btn">Back to Exams</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="review-view" class="review-wrapper hidden">
+                <div class="panel-card">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+                        <div>
+                            <h2 class="fw-bold mb-1">Review Answers</h2>
+                            <div class="text-muted" id="review-summary">Check your selected answers and the correct ones.</div>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button type="button" class="btn btn-outline-primary primary-btn" id="review-retake-btn">Retake</button>
+                            <button type="button" class="btn btn-primary primary-btn" id="review-catalog-btn">Back to Exams</button>
+                        </div>
+                    </div>
+                    <div id="review-list"></div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        const filters = ["All", "Java", "Python", "C++"];
+
+        const examCatalog = [
+            {
+                id: "java-basic",
+                language: "Java",
+                level: "Basic",
+                title: "Java Basic",
+                description: "Test your fundamental knowledge of Java syntax and core concepts.",
+                questions: [
+                    { question: "What is JVM in Java?", options: ["Java Virtual Machine", "Java Variable Method", "Java Very Much", "None of the above"], answer: 0 },
+                    { question: "Which keyword is used to create a subclass in Java?", options: ["extends", "implements", "inherits", "super"], answer: 0 },
+                    { question: "Which data type stores true or false values?", options: ["String", "boolean", "char", "int"], answer: 1 },
+                    { question: "Which method is the entry point of a Java application?", options: ["start()", "run()", "main()", "init()"], answer: 2 },
+                    { question: "What symbol ends a statement in Java?", options: [".", ":", ";", ","], answer: 2 },
+                    { question: "Which loop is best when the number of iterations is known?", options: ["for", "while", "do-while", "switch"], answer: 0 },
+                    { question: "Which of these is used to print text to the console?", options: ["Console.write()", "print()", "System.out.println()", "echo()"], answer: 2 },
+                    { question: "What is the default value of an uninitialized boolean field?", options: ["true", "false", "null", "0"], answer: 1 },
+                    { question: "Which keyword creates an object?", options: ["create", "new", "class", "object"], answer: 1 },
+                    { question: "Which access modifier makes a member available everywhere?", options: ["private", "protected", "default", "public"], answer: 3 }
+                ]
+            },
+            {
+                id: "java-intermediate",
+                language: "Java",
+                level: "Intermediate",
+                title: "Java Intermediate",
+                description: "Challenge yourself with object-oriented and collection-based questions.",
+                questions: [
+                    { question: "Which collection does not allow duplicate elements?", options: ["List", "Set", "Queue", "ArrayList"], answer: 1 },
+                    { question: "What is method overloading?", options: ["Same method name with different parameters", "Same class with many objects", "Overriding a parent class field", "Calling many methods at once"], answer: 0 },
+                    { question: "Which keyword refers to the current object?", options: ["self", "super", "this", "current"], answer: 2 },
+                    { question: "Which interface is implemented by ArrayList?", options: ["Set", "Map", "List", "Deque"], answer: 2 },
+                    { question: "Which exception is unchecked?", options: ["IOException", "SQLException", "ClassNotFoundException", "NullPointerException"], answer: 3 },
+                    { question: "What does encapsulation mainly protect?", options: ["Program speed", "Data integrity", "Class size", "Method count"], answer: 1 },
+                    { question: "Which keyword prevents inheritance?", options: ["const", "static", "final", "sealed"], answer: 2 },
+                    { question: "What does super() do?", options: ["Calls the parent constructor", "Creates a superclass", "Overrides a method", "Calls a static method"], answer: 0 },
+                    { question: "Which map stores key-value pairs in insertion order?", options: ["HashMap", "TreeMap", "LinkedHashMap", "Hashtable"], answer: 2 },
+                    { question: "Which feature lets a subclass provide its own version of a method?", options: ["Abstraction", "Overloading", "Overriding", "Casting"], answer: 2 }
+                ]
+            },
+            {
+                id: "java-advanced",
+                language: "Java",
+                level: "Advanced",
+                title: "Java Advanced",
+                description: "Test advanced Java skills like Streams, Concurrency, and Spring Boot.",
+                questions: [
+                    { question: "What is the main purpose of the Stream API?", options: ["Thread creation", "Functional-style data processing", "Database connection", "Bytecode execution"], answer: 1 },
+                    { question: "Which keyword is used for thread-safe locking in Java?", options: ["safe", "lock", "synchronized", "atomic"], answer: 2 },
+                    { question: "What does parallelStream() aim to do?", options: ["Sort faster only", "Process elements concurrently", "Convert lists to arrays", "Prevent mutation"], answer: 1 },
+                    { question: "Which annotation marks a Spring Boot entry class?", options: ["@SpringMain", "@SpringBootApplication", "@EnableBoot", "@BootApp"], answer: 1 },
+                    { question: "Which executor service method submits a task and returns a Future?", options: ["run()", "start()", "submit()", "await()"], answer: 2 },
+                    { question: "What is a race condition?", options: ["A fast algorithm", "Multiple threads causing unpredictable results", "A database timeout", "A failed cast"], answer: 1 },
+                    { question: "Which class is commonly used for immutable date-time in modern Java?", options: ["Date", "Calendar", "LocalDateTime", "Timestamp"], answer: 2 },
+                    { question: "What is dependency injection in Spring?", options: ["Manual object creation", "Passing dependencies from outside", "Class inheritance", "Method overloading"], answer: 1 },
+                    { question: "Which collector converts a stream into a list?", options: ["Collectors.groupingBy()", "Collectors.mapping()", "Collectors.toList()", "Collectors.joining()"], answer: 2 },
+                    { question: "What benefit does CompletableFuture provide?", options: ["SQL mapping", "Asynchronous task composition", "Automatic caching", "File encryption"], answer: 1 }
+                ]
+            },
+            {
+                id: "python-basic",
+                language: "Python",
+                level: "Basic",
+                title: "Python Basic",
+                description: "Start your Python journey with variables, loops, and conditions.",
+                questions: [
+                    { question: "Which symbol starts a comment in Python?", options: ["//", "#", "/*", "--"], answer: 1 },
+                    { question: "Which data type stores text?", options: ["int", "float", "str", "bool"], answer: 2 },
+                    { question: "How do you define a function in Python?", options: ["function myFunc()", "def my_func():", "func my_func()", "define my_func()"], answer: 1 },
+                    { question: "Which keyword is used for a conditional branch?", options: ["when", "elif", "case", "loop"], answer: 1 },
+                    { question: "What does len() return?", options: ["The last value", "The number of items", "A boolean result", "A random number"], answer: 1 },
+                    { question: "Which collection uses square brackets?", options: ["tuple", "set", "dictionary", "list"], answer: 3 },
+                    { question: "What is the output type of input()?", options: ["int", "str", "bool", "float"], answer: 1 },
+                    { question: "Which loop iterates over a sequence directly?", options: ["for", "switch", "repeat", "case"], answer: 0 },
+                    { question: "How do you check equality in Python?", options: ["=", "==", "===", ":"], answer: 1 },
+                    { question: "Which boolean value is valid in Python?", options: ["true", "TRUE", "True", "truth"], answer: 2 }
+                ]
+            },
+            {
+                id: "python-intermediate",
+                language: "Python",
+                level: "Intermediate",
+                title: "Python Intermediate",
+                description: "Explore data structures, functions, and modules in Python.",
+                questions: [
+                    { question: "Which data structure stores key-value pairs?", options: ["list", "tuple", "dict", "set"], answer: 2 },
+                    { question: "What does *args allow in a function?", options: ["Keyword-only parameters", "Unlimited positional arguments", "Automatic recursion", "Module import"], answer: 1 },
+                    { question: "Which statement handles exceptions?", options: ["catch/throw", "try/except", "guard/rescue", "if/error"], answer: 1 },
+                    { question: "What is a list comprehension used for?", options: ["Writing comments", "Creating lists concisely", "Sorting automatically", "Importing modules"], answer: 1 },
+                    { question: "Which module is commonly used to work with JSON?", options: ["data", "serialize", "json", "picklejson"], answer: 2 },
+                    { question: "What does with open(...) help manage?", options: ["Function parameters", "File context and closing", "Loop control", "Global scope"], answer: 1 },
+                    { question: "Which structure is immutable?", options: ["list", "set", "dict", "tuple"], answer: 3 },
+                    { question: "What does enumerate() provide?", options: ["Only values", "Index and value pairs", "Sorted output", "Unique items"], answer: 1 },
+                    { question: "Which keyword imports a module?", options: ["include", "require", "import", "module"], answer: 2 },
+                    { question: "What does slicing items[1:4] return?", options: ["Items 1 through 4 inclusive", "Items from index 1 to 3", "Only index 4", "Every item after 4"], answer: 1 }
+                ]
+            },
+            {
+                id: "python-advanced",
+                language: "Python",
+                level: "Advanced",
+                title: "Python Advanced",
+                description: "Master advanced Python topics including OOP and decorators.",
+                questions: [
+                    { question: "What is a decorator in Python?", options: ["A design theme", "A function that wraps another function", "A built-in class", "A type of loop"], answer: 1 },
+                    { question: "Which method customizes object string representation for developers?", options: ["__str__", "__repr__", "__call__", "__len__"], answer: 1 },
+                    { question: "What is inheritance used for?", options: ["Hiding functions", "Reusing and extending class behavior", "Sorting objects", "Deleting instances"], answer: 1 },
+                    { question: "Which keyword creates an anonymous function?", options: ["anon", "lambda", "func", "yield"], answer: 1 },
+                    { question: "What does yield indicate?", options: ["A generator value", "An exception", "A class variable", "A decorator"], answer: 0 },
+                    { question: "Which module provides asynchronous I/O primitives?", options: ["threading", "asyncio", "time", "future"], answer: 1 },
+                    { question: "What does @property help create?", options: ["Static imports", "Managed attribute access", "Dictionary keys", "Private modules"], answer: 1 },
+                    { question: "Which of the following best describes duck typing?", options: ["Strict interface enforcement", "Behavior-based type compatibility", "Static compilation", "Numeric type casting"], answer: 1 },
+                    { question: "What is the main use of virtual environments?", options: ["Speeding up loops", "Isolating project dependencies", "Encrypting code", "Generating docs"], answer: 1 },
+                    { question: "Which method is called when an object is created?", options: ["__build__", "__init__", "__newobj__", "__start__"], answer: 1 }
+                ]
+            },
+            {
+                id: "cpp-basic",
+                language: "C++",
+                level: "Basic",
+                title: "C++ Basic",
+                description: "Learn the basics of C++ syntax, variables, and control structures.",
+                questions: [
+                    { question: "Which symbol is used to include a header in C++?", options: ["@", "#", "$", "&"], answer: 1 },
+                    { question: "Which stream is commonly used for output?", options: ["cin", "cout", "cerrin", "print"], answer: 1 },
+                    { question: "Which keyword declares a constant value?", options: ["let", "const", "fixed", "final"], answer: 1 },
+                    { question: "Which data type stores decimal values?", options: ["char", "bool", "float", "void"], answer: 2 },
+                    { question: "Which statement selects among multiple branches?", options: ["loop", "switch", "repeat", "scan"], answer: 1 },
+                    { question: "What does return 0; often indicate in main()?", options: ["Program paused", "Program ended successfully", "A compilation error", "No output"], answer: 1 },
+                    { question: "Which operator compares equality?", options: ["=", "==", ":=", "!="], answer: 1 },
+                    { question: "Which loop always executes at least once?", options: ["for", "while", "do-while", "foreach"], answer: 2 },
+                    { question: "What is the correct file extension for many C++ source files?", options: [".java", ".py", ".cpp", ".cs"], answer: 2 },
+                    { question: "Which keyword creates a class object dynamically?", options: ["malloc", "create", "alloc", "new"], answer: 3 }
+                ]
+            },
+            {
+                id: "cpp-intermediate",
+                language: "C++",
+                level: "Intermediate",
+                title: "C++ Intermediate",
+                description: "Improve your understanding of classes, pointers, and templates.",
+                questions: [
+                    { question: "What does a pointer store?", options: ["A class name", "A memory address", "A loop count", "A template type"], answer: 1 },
+                    { question: "Which keyword is used for class inheritance in C++?", options: ["extends", "inherits", ":", "implements"], answer: 2 },
+                    { question: "What is a constructor?", options: ["A cleanup method", "A function that initializes an object", "A loop", "A compiler flag"], answer: 1 },
+                    { question: "Which operator accesses members through a pointer?", options: [".", "::", "->", "&"], answer: 2 },
+                    { question: "What is a template used for?", options: ["GUI layout", "Generic programming", "Manual memory release", "Namespace aliasing"], answer: 1 },
+                    { question: "Which keyword prevents a method from modifying an object?", options: ["final", "locked", "const", "static"], answer: 2 },
+                    { question: "What is function overloading?", options: ["Same function name with different parameters", "Replacing old functions", "Calling nested loops", "Using more memory"], answer: 0 },
+                    { question: "What does delete do?", options: ["Creates objects", "Releases dynamically allocated memory", "Imports libraries", "Copies pointers"], answer: 1 },
+                    { question: "Which STL container is dynamic and index-based?", options: ["map", "set", "vector", "stack"], answer: 2 },
+                    { question: "Which access modifier is default for class members?", options: ["public", "private", "protected", "internal"], answer: 1 }
+                ]
+            },
+            {
+                id: "cpp-advanced",
+                language: "C++",
+                level: "Advanced",
+                title: "C++ Advanced",
+                description: "Dive into memory management, STL, and advanced object-oriented design.",
+                questions: [
+                    { question: "What is RAII mainly about?", options: ["Automatic resource management via object lifetime", "Remote API integration", "Recursive algorithm indexing", "Rapid assembly instructions"], answer: 0 },
+                    { question: "Which smart pointer shares ownership?", options: ["unique_ptr", "raw_ptr", "shared_ptr", "auto_ptr"], answer: 2 },
+                    { question: "What is move semantics used for?", options: ["Avoiding unnecessary copies", "Moving files on disk", "Switching namespaces", "Comparing objects"], answer: 0 },
+                    { question: "Which keyword marks a method that overrides a base virtual method?", options: ["override", "virtualized", "extends", "replace"], answer: 0 },
+                    { question: "What does the STL algorithm library provide?", options: ["Only sorting", "Common reusable algorithms", "Memory addresses", "Compilation steps"], answer: 1 },
+                    { question: "What is polymorphism?", options: ["Using multiple compilers", "One interface with many implementations", "A kind of pointer", "An integer conversion"], answer: 1 },
+                    { question: "Which container offers fast key-based lookup?", options: ["vector", "queue", "unordered_map", "array"], answer: 2 },
+                    { question: "Why use unique_ptr?", options: ["To share many owners", "To enforce single ownership", "To avoid constructors", "To replace templates"], answer: 1 },
+                    { question: "What is a lambda in C++?", options: ["A database record", "An anonymous function object", "A pointer alias", "A compiler error"], answer: 1 },
+                    { question: "What is the purpose of virtual destructors?", options: ["Improve sorting", "Enable correct cleanup through base pointers", "Avoid inheritance", "Create templates"], answer: 1 }
+                ]
+            }
+        ];
+
+        const state = {
+            filter: "All",
+            exam: null,
+            currentQuestionIndex: 0,
+            answers: []
+        };
+
+        const pageTitle = document.getElementById("page-title");
+        const catalogView = document.getElementById("catalog-view");
+        const quizView = document.getElementById("quiz-view");
+        const resultView = document.getElementById("result-view");
+        const reviewView = document.getElementById("review-view");
+        const filterBar = document.getElementById("filter-bar");
+        const examGrid = document.getElementById("exam-grid");
+        const questionCounter = document.getElementById("question-counter");
+        const questionPercent = document.getElementById("question-percent");
+        const progressBar = document.getElementById("progress-bar");
+        const questionText = document.getElementById("question-text");
+        const answersList = document.getElementById("answers-list");
+        const prevBtn = document.getElementById("prev-btn");
+        const nextBtn = document.getElementById("next-btn");
+        const resultScore = document.getElementById("result-score");
+        const resultPercent = document.getElementById("result-percent");
+        const resultStatus = document.getElementById("result-status");
+        const reviewSummary = document.getElementById("review-summary");
+        const reviewList = document.getElementById("review-list");
+
+        function renderFilters() {
+            filterBar.innerHTML = filters.map(filter => `
+                <button class="filter-btn ${state.filter === filter ? "active" : ""}" data-filter="${filter}">${filter}</button>
+            `).join("");
+
+            filterBar.querySelectorAll(".filter-btn").forEach(button => {
+                button.addEventListener("click", () => {
+                    state.filter = button.dataset.filter;
+                    renderFilters();
+                    renderCatalog();
+                });
+            });
+        }
+
+        function renderCatalog() {
+            const filteredExams = state.filter === "All"
+                ? examCatalog
+                : examCatalog.filter(exam => exam.language === state.filter);
+
+            examGrid.innerHTML = filteredExams.map(exam => `
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="exam-card">
+                        <h2 class="exam-title">${exam.title}</h2>
+                        <p class="exam-description">${exam.description}</p>
+                        <button class="btn btn-primary primary-btn start-exam-btn" data-exam-id="${exam.id}">Take Exam</button>
+                    </div>
+                </div>
+            `).join("");
+
+            examGrid.querySelectorAll(".start-exam-btn").forEach(button => {
+                button.addEventListener("click", () => {
+                    const selectedExam = examCatalog.find(exam => exam.id === button.dataset.examId);
+                    startExam(selectedExam);
+                });
+            });
+        }
+
+        function showView(viewName) {
+            catalogView.classList.add("hidden");
+            quizView.classList.add("hidden");
+            resultView.classList.add("hidden");
+            reviewView.classList.add("hidden");
+
+            if (viewName === "catalog") {
+                catalogView.classList.remove("hidden");
+                pageTitle.textContent = "Tech Skill Exams";
+            }
+
+            if (viewName === "quiz") {
+                quizView.classList.remove("hidden");
+                pageTitle.textContent = `${state.exam.title} Exam`;
+            }
+
+            if (viewName === "result") {
+                resultView.classList.remove("hidden");
+                pageTitle.textContent = `${state.exam.title} Exam`;
+            }
+
+            if (viewName === "review") {
+                reviewView.classList.remove("hidden");
+                pageTitle.textContent = `${state.exam.title} Exam`;
+            }
+        }
+
+        function startExam(exam) {
+            state.exam = exam;
+            state.currentQuestionIndex = 0;
+            state.answers = new Array(exam.questions.length).fill(null);
+            showView("quiz");
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const totalQuestions = state.exam.questions.length;
+            const currentNumber = state.currentQuestionIndex + 1;
+            const progress = Math.round((currentNumber / totalQuestions) * 100);
+            const currentQuestion = state.exam.questions[state.currentQuestionIndex];
+
+            questionCounter.textContent = `Question ${currentNumber} / ${totalQuestions}`;
+            questionPercent.textContent = `${progress}%`;
+            progressBar.style.width = `${progress}%`;
+            progressBar.setAttribute("aria-valuenow", progress);
+            questionText.textContent = currentQuestion.question;
+
+            answersList.innerHTML = currentQuestion.options.map((option, index) => `
+                <button type="button" class="answer-option w-100 text-start ${state.answers[state.currentQuestionIndex] === index ? "selected" : ""}" data-option-index="${index}">
+                    ${option}
+                </button>
+            `).join("");
+
+            answersList.querySelectorAll(".answer-option").forEach(button => {
+                button.addEventListener("click", () => {
+                    state.answers[state.currentQuestionIndex] = Number(button.dataset.optionIndex);
+                    renderQuestion();
+                });
+            });
+
+            prevBtn.disabled = state.currentQuestionIndex === 0;
+            nextBtn.textContent = currentNumber === totalQuestions ? "Submit" : "Next";
+        }
+
+        function finishExam() {
+            const totalQuestions = state.exam.questions.length;
+            let correctCount = 0;
+
+            state.exam.questions.forEach((question, index) => {
+                if (state.answers[index] === question.answer) {
+                    correctCount += 1;
+                }
+            });
+
+            const percentage = Math.round((correctCount / totalQuestions) * 100);
+            resultScore.textContent = `Your Score: ${correctCount} / ${totalQuestions}`;
+            resultPercent.textContent = `Percentage: ${percentage}%`;
+            resultStatus.innerHTML = percentage >= 70
+                ? `<span class="status-pill pass"><i class="bi bi-check-circle-fill"></i>Passed</span>`
+                : `<span class="status-pill fail"><i class="bi bi-x-circle-fill"></i>Needs Improvement</span>`;
+
+            showView("result");
+        }
+
+        function renderReview() {
+            let correctCount = 0;
+
+            reviewList.innerHTML = state.exam.questions.map((question, index) => {
+                const userAnswerIndex = state.answers[index];
+                const correctAnswerIndex = question.answer;
+                const isCorrect = userAnswerIndex === correctAnswerIndex;
+
+                if (isCorrect) {
+                    correctCount += 1;
+                }
+
+                const userAnswerText = userAnswerIndex === null
+                    ? "No answer selected"
+                    : question.options[userAnswerIndex];
+
+                return `
+                    <div class="review-item">
+                        <div class="review-question">Question ${index + 1}. ${question.question}</div>
+                        <div class="review-answer ${isCorrect ? "correct" : "wrong"}">
+                            <strong>Your answer:</strong> ${userAnswerText}
+                        </div>
+                        <div class="review-answer neutral">
+                            <strong>Correct answer:</strong> ${question.options[correctAnswerIndex]}
+                        </div>
+                    </div>
+                `;
+            }).join("");
+
+            reviewSummary.textContent = `You answered ${correctCount} out of ${state.exam.questions.length} questions correctly.`;
+            showView("review");
+        }
+
+        prevBtn.addEventListener("click", () => {
+            if (state.currentQuestionIndex > 0) {
+                state.currentQuestionIndex -= 1;
+                renderQuestion();
+            }
+        });
+
+        nextBtn.addEventListener("click", () => {
+            if (state.currentQuestionIndex === state.exam.questions.length - 1) {
+                finishExam();
+                return;
+            }
+
+            state.currentQuestionIndex += 1;
+            renderQuestion();
+        });
+
+        document.getElementById("review-btn").addEventListener("click", renderReview);
+        document.getElementById("retake-btn").addEventListener("click", () => startExam(state.exam));
+        document.getElementById("catalog-btn").addEventListener("click", () => showView("catalog"));
+        document.getElementById("review-retake-btn").addEventListener("click", () => startExam(state.exam));
+        document.getElementById("review-catalog-btn").addEventListener("click", () => showView("catalog"));
+
+        renderFilters();
+        renderCatalog();
+        showView("catalog");
+    </script>
+</body>
+
+</html>
