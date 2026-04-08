@@ -172,6 +172,31 @@
             font-size: 0.88rem;
         }
 
+        .unit-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.88);
+            border: 1px solid var(--border);
+        }
+
+        .unit-btn {
+            border: none;
+            border-radius: 999px;
+            padding: 10px 14px;
+            background: transparent;
+            color: #5b6b83;
+            font-weight: 800;
+        }
+
+        .unit-btn.active {
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            color: white;
+            box-shadow: 0 10px 22px rgba(37, 99, 235, 0.18);
+        }
+
         .weather-overview {
             display: grid;
             grid-template-columns: 1.15fr 0.85fr;
@@ -438,7 +463,7 @@
                 </div>
                 <div class="stat-card">
                     <div class="stat-label">Units</div>
-                    <div class="stat-value">°F / mph</div>
+                    <div class="stat-value" id="unit-stat">°C / km/h</div>
                 </div>
             </div>
         </section>
@@ -449,7 +474,13 @@
                     <h2 class="weather-location" id="w-location">Hanoi, Vietnam</h2>
                     <div class="weather-status" id="w-status">Loading weather...</div>
                 </div>
-                <div class="status-chip"><i class="bi bi-broadcast-pin"></i>Live Forecast View</div>
+                <div class="d-flex flex-wrap gap-2 align-items-center">
+                    <div class="status-chip"><i class="bi bi-broadcast-pin"></i>Live Forecast View</div>
+                    <div class="unit-toggle">
+                        <button type="button" class="unit-btn active" data-unit-toggle="c">°C</button>
+                        <button type="button" class="unit-btn" data-unit-toggle="f">°F</button>
+                    </div>
+                </div>
             </div>
 
             <div class="weather-overview">
@@ -458,7 +489,7 @@
                         <i class="bi bi-hourglass-split text-dark"></i>
                     </div>
                     <div class="temperature-large align-self-center">
-                        <span id="w-temp" style="font-size: 5rem; margin-top: 0; margin-left: 0;">--</span><span>&deg;</span><small class="fs-4 mt-4 ms-1">F</small>
+                        <span id="w-temp" style="font-size: 5rem; margin-top: 0; margin-left: 0;">--</span><span>&deg;</span><small class="fs-4 mt-4 ms-1" id="temp-unit-label">C</small>
                     </div>
                 </div>
 

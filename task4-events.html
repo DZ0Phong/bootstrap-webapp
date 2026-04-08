@@ -4,119 +4,374 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bootstrap WebApp - Online Events</title>
-    <!-- Bootstrap CSS -->
+    <title>Task 4 - Event Hub</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg: #fff7ed;
+            --text: #1b2333;
+            --muted: #6c768a;
+            --panel: rgba(255, 255, 255, 0.92);
+            --border: rgba(148, 163, 184, 0.18);
+            --primary: #ea580c;
+            --primary-dark: #c2410c;
+            --accent: #fb923c;
+            --shadow: 0 24px 50px rgba(15, 23, 42, 0.08);
+        }
+
         body {
+            margin: 0;
+            min-height: 100vh;
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #f7f9fc;
-            color: #1a1d20;
+            color: var(--text);
+            background:
+                radial-gradient(circle at top left, rgba(251, 146, 60, 0.18), transparent 22%),
+                radial-gradient(circle at top right, rgba(249, 115, 22, 0.12), transparent 18%),
+                linear-gradient(180deg, #fffaf4 0%, var(--bg) 100%);
         }
 
-        .page-header {
-            margin-bottom: 3rem;
-            text-align: center;
+        .page-shell {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 28px 18px 56px;
         }
 
-        .page-header h2 {
-            font-weight: 700;
-            color: #0f172a;
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #6a7386;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+
+        .back-link:hover {
+            color: var(--primary);
+        }
+
+        .hero-card,
+        .filter-card,
+        .event-card,
+        .featured-card {
+            background: var(--panel);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(12px);
+        }
+
+        .hero-card {
+            border-radius: 30px;
+            padding: 30px;
+            margin-bottom: 22px;
             position: relative;
-            display: inline-block;
-        }
-
-        .event-card {
-            border: none;
-            border-radius: 16px;
             overflow: hidden;
-            background: #fff;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
         }
 
-        .event-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        .hero-card::after {
+            content: "";
+            position: absolute;
+            width: 260px;
+            height: 260px;
+            top: -90px;
+            right: -90px;
+            background: radial-gradient(circle, rgba(249, 115, 22, 0.18), transparent 62%);
         }
 
-        .event-img {
-            height: 200px;
-            object-fit: cover;
-            width: 100%;
-            border-bottom: 1px solid #f1f5f9;
-        }
-
-        .event-body {
-            padding: 24px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .event-title {
-            font-size: 1.25rem;
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border-radius: 999px;
+            padding: 9px 14px;
+            background: rgba(251, 146, 60, 0.14);
+            color: var(--primary-dark);
             font-weight: 700;
-            margin-bottom: 16px;
-            color: #1e293b;
-            line-height: 1.4;
+            font-size: 0.84rem;
         }
 
-        .event-detail {
-            font-size: 0.95rem;
-            color: #64748b;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: flex-start;
+        .hero-title {
+            font-size: clamp(2.4rem, 4.6vw, 4rem);
+            line-height: 1.05;
+            font-weight: 800;
+            margin: 18px 0 0;
+            max-width: 780px;
+        }
+
+        .hero-text {
+            max-width: 720px;
+            color: var(--muted);
+            line-height: 1.8;
+            margin-top: 16px;
+            font-size: 1.02rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 14px;
+            margin-top: 24px;
+        }
+
+        .stat-card {
+            border-radius: 22px;
+            padding: 18px 20px;
+            background: rgba(255, 255, 255, 0.72);
+            border: 1px solid var(--border);
+        }
+
+        .stat-label {
+            color: var(--muted);
+            font-size: 0.84rem;
+            margin-bottom: 8px;
+        }
+
+        .stat-value {
+            font-size: 1.72rem;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .layout-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .featured-card {
+            border-radius: 30px;
+            padding: 24px;
+            min-height: 100%;
+        }
+
+        .featured-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border-radius: 999px;
+            padding: 8px 12px;
+            background: #ffedd5;
+            color: var(--primary-dark);
+            font-weight: 700;
+            font-size: 0.82rem;
+            margin-bottom: 16px;
+        }
+
+        .featured-title {
+            font-size: 1.75rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+
+        .featured-copy {
+            color: var(--muted);
+            line-height: 1.8;
+            margin-bottom: 18px;
+        }
+
+        .featured-meta {
+            display: grid;
             gap: 10px;
         }
 
+        .featured-line {
+            display: flex;
+            gap: 10px;
+            color: #435066;
+            font-weight: 600;
+        }
+
+        .featured-line i {
+            color: var(--primary);
+        }
+
+        .filter-card {
+            border-radius: 28px;
+            padding: 22px;
+        }
+
+        .filter-title {
+            font-size: 1.08rem;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .filter-text {
+            color: var(--muted);
+            font-size: 0.94rem;
+            margin-bottom: 14px;
+        }
+
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .filter-btn {
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            background: white;
+            color: #4e5d76;
+            font-weight: 700;
+            padding: 10px 16px;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            border-color: transparent;
+        }
+
+        .search-box {
+            position: relative;
+            margin-top: 16px;
+        }
+
+        .search-box input {
+            width: 100%;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 14px 16px 14px 44px;
+            font-weight: 600;
+            color: #324055;
+            outline: none;
+            background: #fff;
+        }
+
+        .search-box input:focus {
+            border-color: rgba(234, 88, 12, 0.5);
+            box-shadow: 0 0 0 4px rgba(251, 146, 60, 0.14);
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+        }
+
+        .results-line {
+            color: var(--muted);
+            font-size: 0.92rem;
+            font-weight: 600;
+        }
+
+        .event-card {
+            border-radius: 24px;
+            overflow: hidden;
+            height: 100%;
+            transition: transform 0.22s ease, box-shadow 0.22s ease;
+        }
+
+        .event-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 28px 50px rgba(15, 23, 42, 0.12);
+        }
+
+        .event-img-wrap {
+            position: relative;
+            height: 220px;
+        }
+
+        .event-img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .event-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            border-radius: 999px;
+            padding: 8px 12px;
+            background: rgba(15, 23, 42, 0.75);
+            color: white;
+            font-weight: 700;
+            font-size: 0.82rem;
+        }
+
+        .event-body {
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            height: calc(100% - 220px);
+        }
+
+        .event-title {
+            font-size: 1.18rem;
+            font-weight: 800;
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        .event-detail {
+            color: #52637c;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.94rem;
+        }
+
         .event-detail i {
-            color: #3b82f6;
-            font-size: 1.1rem;
-            margin-top: -2px;
+            color: var(--primary);
+            margin-top: 2px;
         }
 
         .checkin-btn {
             margin-top: auto;
-            border-radius: 10px;
-            font-weight: 600;
-            padding: 12px;
-            background-color: #2563eb;
-            border-color: #2563eb;
-            transition: background-color 0.2s ease;
+            border-radius: 14px;
+            padding: 12px 16px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border: none;
         }
 
         .checkin-btn:hover {
-            background-color: #1d4ed8;
-            border-color: #1d4ed8;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
         }
 
-        /* Modal Customization */
+        .empty-state {
+            border-radius: 28px;
+            padding: 40px 24px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.82);
+            border: 1px dashed rgba(148, 163, 184, 0.45);
+            color: var(--muted);
+            box-shadow: var(--shadow);
+        }
+
+        .empty-state i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 14px;
+        }
+
         .modal-content {
-            border-radius: 20px;
             border: none;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            border-radius: 26px;
+            overflow: hidden;
+            box-shadow: 0 34px 70px rgba(15, 23, 42, 0.18);
         }
 
-        .modal-header {
-            border-bottom: 1px solid #f1f5f9;
-            padding: 24px 32px 16px;
+        .modal-header,
+        .modal-footer {
+            border: none;
+            padding: 22px 26px;
         }
 
         .modal-body {
-            padding: 32px;
+            padding: 0 26px 26px;
             text-align: center;
-        }
-
-        .modal-footer {
-            border-top: none;
-            padding: 16px 32px 32px;
         }
 
         .qr-placeholder {
@@ -124,9 +379,9 @@
             height: 250px;
             margin: 0 auto;
             background: #fff;
-            padding: 15px;
-            border-radius: 16px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            padding: 16px;
+            border-radius: 20px;
+            box-shadow: 0 16px 32px rgba(15, 23, 42, 0.08);
             border: 1px solid #e2e8f0;
             display: flex;
             align-items: center;
@@ -138,136 +393,251 @@
             height: 100%;
             object-fit: contain;
         }
+
+        @media (max-width: 991px) {
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .layout-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-card,
+            .featured-card,
+            .filter-card {
+                border-radius: 22px;
+                padding: 20px;
+            }
+        }
     </style>
 </head>
 
 <body>
+    <div class="page-shell">
+        <a href="index.html" class="back-link"><i class="bi bi-arrow-left"></i>Back to Dashboard</a>
 
-    <main class="container my-5 pb-5">
-        <!-- Back Link -->
-        <div class="mb-4">
-            <a href="index.html" class="text-decoration-none text-primary fw-medium"><i class="bi bi-arrow-left me-2"></i>Back to Dashboard</a>
+        <section class="hero-card">
+            <span class="eyebrow"><i class="bi bi-mic-fill"></i>Virtual Event Hub</span>
+            <h1 class="hero-title">Discover upcoming sessions and check in with one smooth flow.</h1>
+            <p class="hero-text">Explore curated online events, scan key details quickly, and open a QR-based check-in modal that keeps registration simple and professional.</p>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">Visible Events</div>
+                    <div class="stat-value" id="totalEventsStat">9</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Formats</div>
+                    <div class="stat-value">3</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Search Ready</div>
+                    <div class="stat-value">Yes</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Check-in</div>
+                    <div class="stat-value">QR</div>
+                </div>
+            </div>
+        </section>
+
+        <div class="layout-grid">
+            <section class="featured-card" id="featuredCard"></section>
+            <section class="filter-card">
+                <div class="filter-title">Browse by format</div>
+                <div class="filter-text">Switch between all events or focus on a specific meeting platform.</div>
+                <div class="filter-bar" id="filterBar"></div>
+                <div class="search-box">
+                    <i class="bi bi-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search by session title, venue, or topic">
+                </div>
+                <div class="results-line mt-3" id="resultsLine">Showing all upcoming sessions.</div>
+            </section>
         </div>
 
-        <div class="page-header mt-4">
-            <h2>🎉 Upcoming Online Events</h2>
-            <p class="text-muted mt-2">Join our exclusive virtual sessions to learn and grow.</p>
-        </div>
+        <section class="row g-4" id="events-grid"></section>
+    </div>
 
-        <div class="row g-4" id="events-grid">
-            <!-- Events will be rendered here via JS -->
-        </div>
-
-    </main>
-
-    <!-- Check-In Modal -->
     <div class="modal fade" id="checkInModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header flex-column border-0 pb-0 position-relative">
-                    <button type="button" class="btn-close position-absolute top-0 end-0 m-4" data-bs-dismiss="modal" aria-label="Close"></button>
-                    <h4 class="modal-title fw-bold text-dark w-100 text-center" id="modal-event-title">Event Check-In</h4>
+                <div class="modal-header">
+                    <div class="w-100">
+                        <div class="text-uppercase small fw-bold text-secondary mb-2">Event Check-In</div>
+                        <h4 class="modal-title fw-bold text-dark mb-0" id="modal-event-title">Ready to join?</h4>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div id="modal-event-name" class="fw-bold mb-1 text-dark fs-5">Event Name</div>
-                    <div id="modal-event-time" class="text-muted small mb-4">Date & Time</div>
-                    
+                    <div id="modal-event-time" class="text-muted small mb-4">Date and Time</div>
+
                     <div class="qr-placeholder" id="qr-container">
                         <img id="qr-code-img" src="" alt="QR Code for Check-In">
                     </div>
-                    
-                    <p class="mt-4 text-muted small mb-0">Use your smartphone camera to scan this QR code and complete your registration.</p>
+
+                    <p class="mt-4 text-muted small mb-0">Scan this QR code with your phone camera to open the registration form and complete your check-in.</p>
                 </div>
-                <div class="modal-footer border-0 justify-content-center">
-                    <button type="button" class="btn btn-secondary px-5 py-2 rounded-3 text-white fw-medium" data-bs-dismiss="modal" style="background-color: #64748b; border:none;">Close</button>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-outline-secondary px-4 py-2 rounded-4 fw-semibold" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
     <script>
-        // Data for 9 upcoming events
         const eventsData = [
-            { id: 1, title: "Tech Innovation Summit", date: "Dec 10, 2025", time: "10:00 AM - 12:00 PM", venue: "Online (Zoom)", image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-            { id: 2, title: "Digital Marketing Workshop", date: "Dec 11, 2025", time: "2:00 PM - 4:00 PM", venue: "Online (Zoom)", image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-            { id: 3, title: "Leadership & Team Building", date: "Dec 12, 2025", time: "9:00 AM - 11:00 AM", venue: "Online (Google Meet)", image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-            { id: 4, title: "AI & Machine Learning Bootcamp", date: "Dec 14, 2025", time: "1:00 PM - 3:00 PM", venue: "Online (Zoom)", image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-            { id: 5, title: "Entrepreneurship Talk", date: "Dec 15, 2025", time: "5:00 PM - 6:30 PM", venue: "Online (Zoom)", image: "https://images.unsplash.com/photo-1515169067868-5387ec356754?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-            { id: 6, title: "UI/UX Design Conference", date: "Dec 16, 2025", time: "7:00 PM - 9:00 PM", venue: "Online (Google Meet)", image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-            { id: 7, title: "Cloud Computing Basics", date: "Dec 18, 2025", time: "10:00 AM - 11:30 AM", venue: "Online (MS Teams)", image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-            { id: 8, title: "Cybersecurity Best Practices", date: "Dec 20, 2025", time: "3:00 PM - 4:30 PM", venue: "Online (Zoom)", image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" },
-            { id: 9, title: "Web Development Trends 2026", date: "Dec 22, 2025", time: "11:00 AM - 1:00 PM", venue: "Online (Google Meet)", image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" }
+            { id: 1, category: "Zoom", title: "Tech Innovation Summit", date: "Dec 10, 2025", time: "10:00 AM - 12:00 PM", venue: "Online (Zoom)", image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80" },
+            { id: 2, category: "Zoom", title: "Digital Marketing Workshop", date: "Dec 11, 2025", time: "2:00 PM - 4:00 PM", venue: "Online (Zoom)", image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80" },
+            { id: 3, category: "Google Meet", title: "Leadership & Team Building", date: "Dec 12, 2025", time: "9:00 AM - 11:00 AM", venue: "Online (Google Meet)", image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80" },
+            { id: 4, category: "Zoom", title: "AI & Machine Learning Bootcamp", date: "Dec 14, 2025", time: "1:00 PM - 3:00 PM", venue: "Online (Zoom)", image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80" },
+            { id: 5, category: "Zoom", title: "Entrepreneurship Talk", date: "Dec 15, 2025", time: "5:00 PM - 6:30 PM", venue: "Online (Zoom)", image: "https://images.unsplash.com/photo-1515169067868-5387ec356754?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80" },
+            { id: 6, category: "Google Meet", title: "UI/UX Design Conference", date: "Dec 16, 2025", time: "7:00 PM - 9:00 PM", venue: "Online (Google Meet)", image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80" },
+            { id: 7, category: "MS Teams", title: "Cloud Computing Basics", date: "Dec 18, 2025", time: "10:00 AM - 11:30 AM", venue: "Online (MS Teams)", image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80" },
+            { id: 8, category: "Zoom", title: "Cybersecurity Best Practices", date: "Dec 20, 2025", time: "3:00 PM - 4:30 PM", venue: "Online (Zoom)", image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80" },
+            { id: 9, category: "Google Meet", title: "Web Development Trends 2026", date: "Dec 22, 2025", time: "11:00 AM - 1:00 PM", venue: "Online (Google Meet)", image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80" }
         ];
 
-        // GOOGLE FORM LINK (Replace this placeholder with the actual form link created by the user)
-        // You can specify the google form link here.
-        let GOOGLE_FORM_LINK = "https://forms.gle/q3tYxgeRa1fA5WAG9";
+        const GOOGLE_FORM_LINK = "https://forms.gle/q3tYxgeRa1fA5WAG9";
+        const filters = ["All", "Zoom", "Google Meet", "MS Teams"];
+        let activeFilter = "All";
+        let searchTerm = "";
 
-        document.addEventListener("DOMContentLoaded", () => {
-            const grid = document.getElementById('events-grid');
-            
-            // Render events
-            eventsData.forEach(event => {
-                const col = document.createElement('div');
-                col.className = 'col-12 col-md-6 col-lg-4';
-                
-                col.innerHTML = `
-                    <div class="event-card">
-                        <img src="${event.image}" alt="${event.title}" class="event-img">
-                        <div class="event-body">
-                            <h3 class="event-title">${event.title}</h3>
-                            <div class="event-detail">
-                                <i class="bi bi-calendar3"></i>
-                                <span><strong>Date:</strong> ${event.date}</span>
-                            </div>
-                            <div class="event-detail">
-                                <i class="bi bi-clock"></i>
-                                <span><strong>Time:</strong> ${event.time}</span>
-                            </div>
-                            <div class="event-detail mb-4">
-                                <i class="bi bi-geo-alt"></i>
-                                <span><strong>Venue:</strong> ${event.venue}</span>
-                            </div>
-                            <button class="btn btn-primary w-100 checkin-btn" data-id="${event.id}">Check In</button>
+        const grid = document.getElementById("events-grid");
+        const filterBar = document.getElementById("filterBar");
+        const featuredCard = document.getElementById("featuredCard");
+        const searchInput = document.getElementById("searchInput");
+        const resultsLine = document.getElementById("resultsLine");
+        const modal = new bootstrap.Modal(document.getElementById("checkInModal"));
+        const qrImg = document.getElementById("qr-code-img");
+        const modalTitle = document.getElementById("modal-event-title");
+        const modalName = document.getElementById("modal-event-name");
+        const modalTime = document.getElementById("modal-event-time");
+
+        function renderFilters() {
+            filterBar.innerHTML = filters.map(filter => `
+                <button class="filter-btn ${filter === activeFilter ? "active" : ""}" data-filter="${filter}">${filter}</button>
+            `).join("");
+
+            filterBar.querySelectorAll(".filter-btn").forEach(button => {
+                button.addEventListener("click", () => {
+                    activeFilter = button.dataset.filter;
+                    renderFilters();
+                    renderEvents();
+                    renderFeatured();
+                });
+            });
+        }
+
+        function getVisibleEvents() {
+            const filteredByCategory = activeFilter === "All"
+                ? eventsData
+                : eventsData.filter(event => event.category === activeFilter);
+
+            if (!searchTerm) {
+                return filteredByCategory;
+            }
+
+            const normalized = searchTerm.toLowerCase();
+            return filteredByCategory.filter(event =>
+                event.title.toLowerCase().includes(normalized) ||
+                event.venue.toLowerCase().includes(normalized) ||
+                event.category.toLowerCase().includes(normalized)
+            );
+        }
+
+        function renderFeatured() {
+            const firstEvent = getVisibleEvents()[0] || eventsData[0];
+            featuredCard.innerHTML = `
+                <div class="featured-tag"><i class="bi bi-stars"></i>Featured Session</div>
+                <div class="featured-title">${firstEvent.title}</div>
+                <div class="featured-copy">Join a curated learning session designed to help attendees discover current ideas, trends, and hands-on strategies in a more engaging online format.</div>
+                <div class="featured-meta">
+                    <div class="featured-line"><i class="bi bi-calendar3"></i><span>${firstEvent.date}</span></div>
+                    <div class="featured-line"><i class="bi bi-clock"></i><span>${firstEvent.time}</span></div>
+                    <div class="featured-line"><i class="bi bi-geo-alt"></i><span>${firstEvent.venue}</span></div>
+                </div>
+                <button class="btn btn-primary w-100 checkin-btn mt-4" data-featured-id="${firstEvent.id}">Open Check-In</button>
+            `;
+
+            const featuredButton = featuredCard.querySelector("[data-featured-id]");
+            if (featuredButton) {
+                featuredButton.addEventListener("click", () => openCheckIn(Number(featuredButton.dataset.featuredId)));
+            }
+        }
+
+        function renderEvents() {
+            const visibleEvents = getVisibleEvents();
+            document.getElementById("totalEventsStat").textContent = visibleEvents.length;
+            resultsLine.textContent = visibleEvents.length === eventsData.length && !searchTerm && activeFilter === "All"
+                ? "Showing all upcoming sessions."
+                : `Showing ${visibleEvents.length} matching session${visibleEvents.length === 1 ? "" : "s"}.`;
+
+            if (visibleEvents.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-12">
+                        <div class="empty-state">
+                            <i class="bi bi-calendar2-x"></i>
+                            <h3 class="fw-bold text-dark mb-2">No events match your filters</h3>
+                            <p class="mb-0">Try another keyword or switch back to a broader platform view.</p>
                         </div>
                     </div>
                 `;
-                grid.appendChild(col);
-            });
+                return;
+            }
 
-            // Handle Check-in button clicks
-            const modal = new bootstrap.Modal(document.getElementById('checkInModal'));
-            const qrImg = document.getElementById('qr-code-img');
-            const modalName = document.getElementById('modal-event-name');
-            const modalTime = document.getElementById('modal-event-time');
+            grid.innerHTML = visibleEvents.map(event => `
+                <div class="col-12 col-md-6 col-xl-4">
+                    <article class="event-card">
+                        <div class="event-img-wrap">
+                            <img src="${event.image}" alt="${event.title}" class="event-img">
+                            <div class="event-badge">${event.category}</div>
+                        </div>
+                        <div class="event-body">
+                            <h3 class="event-title">${event.title}</h3>
+                            <div class="event-detail"><i class="bi bi-calendar3"></i><span><strong>Date:</strong> ${event.date}</span></div>
+                            <div class="event-detail"><i class="bi bi-clock"></i><span><strong>Time:</strong> ${event.time}</span></div>
+                            <div class="event-detail"><i class="bi bi-geo-alt"></i><span><strong>Venue:</strong> ${event.venue}</span></div>
+                            <button class="btn btn-primary w-100 checkin-btn" data-id="${event.id}">Open Check-In</button>
+                        </div>
+                    </article>
+                </div>
+            `).join("");
 
-            document.querySelectorAll('.checkin-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const eventId = parseInt(e.target.getAttribute('data-id'));
-                    const event = eventsData.find(ev => ev.id === eventId);
-                    
-                    if(event) {
-                        modalName.textContent = event.title;
-                        modalTime.textContent = `${event.date} • ${event.time}`;
-                        
-                        // Generate QR code using public API pointing to the google form.
-                        // We can append a URL parameter so the form potentially pre-fills, or just link directly.
-                        if (GOOGLE_FORM_LINK.includes("placeholder")) {
-                            // If user hasn't provided the link yet, just show a placeholder QR
-                            qrImg.src = "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=Please%20Insert%20Google%20Form%20Link";
-                        } else {
-                            const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(GOOGLE_FORM_LINK)}`;
-                            qrImg.src = qrUrl;
-                        }
-                        
-                        modal.show();
-                    }
-                });
+            grid.querySelectorAll(".checkin-btn").forEach(button => {
+                button.addEventListener("click", () => openCheckIn(Number(button.dataset.id)));
             });
+        }
+
+        function openCheckIn(eventId) {
+            const event = eventsData.find(item => item.id === eventId);
+            if (!event) return;
+
+            modalTitle.textContent = `Join ${event.title}`;
+            modalName.textContent = event.title;
+            modalTime.textContent = `${event.date} • ${event.time}`;
+            qrImg.src = GOOGLE_FORM_LINK.includes("placeholder")
+                ? "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=Please%20Insert%20Google%20Form%20Link"
+                : `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(GOOGLE_FORM_LINK)}`;
+            modal.show();
+        }
+
+        searchInput.addEventListener("input", () => {
+            searchTerm = searchInput.value.trim();
+            renderFeatured();
+            renderEvents();
         });
+
+        renderFilters();
+        renderFeatured();
+        renderEvents();
     </script>
 </body>
 
