@@ -1,81 +1,64 @@
 document.addEventListener("DOMContentLoaded", () => {
-    /* -------------------------------------
-       1. Scroll to Top Logic (index.html)
-       ------------------------------------- */
     const scrollTopBtn = document.getElementById("scrollTopBtn");
 
     if (scrollTopBtn) {
         window.addEventListener("scroll", () => {
-            // Show button when scrolled down 200px
-            if (window.scrollY > 200) {
-                scrollTopBtn.style.display = "block";
-            } else {
-                scrollTopBtn.style.display = "none";
-            }
+            scrollTopBtn.style.display = window.scrollY > 200 ? "block" : "none";
         });
 
-        // Khung hình mịn với JavaScript có khả năng huỷ chu kỳ vòng lặp khi chạm đích
-        scrollTopBtn.addEventListener("click", (e) => {
-            e.preventDefault();
+        scrollTopBtn.addEventListener("click", (event) => {
+            event.preventDefault();
+
             const scrollToTop = () => {
-                const c = document.documentElement.scrollTop || document.body.scrollTop;
-                if (c > 0) {
+                const currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
+
+                if (currentScroll > 0) {
                     window.requestAnimationFrame(scrollToTop);
-                    // Dùng -1 để đảm bảo c sẽ đạt 0, tránh lỗi số đuôi thập phân mắc kẹt vòng lặp (gây giật)
-                    window.scrollTo(0, c - c / 8 - 1);
+                    window.scrollTo(0, currentScroll - currentScroll / 8 - 1);
                 }
             };
+
             scrollToTop();
         });
     }
 
-    /* -------------------------------------
-       2. Login / Signup Form Switch 
-       ------------------------------------- */
     const loginSection = document.getElementById("loginSection");
     const signupSection = document.getElementById("signupSection");
     const showSignupBtn = document.getElementById("showSignup");
     const showLoginBtn = document.getElementById("showLogin");
 
     if (loginSection && signupSection && showSignupBtn && showLoginBtn) {
-        // Show Signup, hide Login
-        showSignupBtn.addEventListener("click", (e) => {
-            e.preventDefault();
+        showSignupBtn.addEventListener("click", (event) => {
+            event.preventDefault();
             loginSection.classList.add("d-none");
             signupSection.classList.remove("d-none");
             signupSection.classList.add("fade-in");
         });
 
-        // Show Login, hide Signup
-        showLoginBtn.addEventListener("click", (e) => {
-            e.preventDefault();
+        showLoginBtn.addEventListener("click", (event) => {
+            event.preventDefault();
             signupSection.classList.add("d-none");
             loginSection.classList.remove("d-none");
             loginSection.classList.add("fade-in");
         });
     }
 
-    /* -------------------------------------
-       3. Form Submission Handling
-       ------------------------------------- */
     const loginForm = document.getElementById("loginForm");
     const signupForm = document.getElementById("signupForm");
 
     if (signupForm) {
-        signupForm.addEventListener("submit", (e) => {
-            e.preventDefault(); // Prevent actual form submission
+        signupForm.addEventListener("submit", (event) => {
+            event.preventDefault();
             alert("You registered successfully!");
-            // Optionally switch to login after signup
             showLoginBtn.click();
             signupForm.reset();
         });
     }
 
     if (loginForm) {
-        loginForm.addEventListener("submit", (e) => {
-            e.preventDefault(); // Prevent actual form submission
+        loginForm.addEventListener("submit", (event) => {
+            event.preventDefault();
             alert("Welcome to home page!");
-            // Redirect to homepage
             window.location.href = "task1-home.html";
         });
     }
