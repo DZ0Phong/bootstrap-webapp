@@ -34,7 +34,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         } catch (error) {
             console.error(error);
-            document.getElementById("w-status").innerText = "Error loading weather data";
+            document.getElementById("w-location").innerText = "Hanoi, Vietnam";
+            document.getElementById("w-status").innerText = "Unable to load weather data right now";
         }
     }
 
@@ -109,14 +110,15 @@ document.addEventListener("DOMContentLoaded", () => {
         // Use Javascript Date for accurate locale time
         const timeString = formatCurrentStatusDate();
 
+        document.getElementById("w-location").innerText = "Hanoi, Vietnam";
         document.getElementById("w-status").innerText = `${info.desc}, ${timeString}`;
         document.getElementById("w-temp").innerText = Math.round(current.temperature_2m);
         document.getElementById("w-main-icon").innerHTML = `<i class="bi ${info.iconClass} text-dark"></i>`;
 
         // In Open-Meteo, precipitation is a raw value, but UV isn't in standard without extra params. We'll use a mock UV index or apparent correlation.
-        document.getElementById("w-precip").innerText = `Precipitation: ${current.precipitation > 0 ? (current.precipitation * 10).toFixed(0) : 8}%`;
-        document.getElementById("w-humid").innerText = `Humidity: ${current.relative_humidity_2m}%`;
-        document.getElementById("w-wind").innerText = `Wind: ${Math.round(current.wind_speed_10m)} mph`;
+        document.getElementById("w-precip").innerHTML = `<strong>Precipitation</strong><span>${current.precipitation > 0 ? (current.precipitation * 10).toFixed(0) : 8}%</span>`;
+        document.getElementById("w-humid").innerHTML = `<strong>Humidity</strong><span>${current.relative_humidity_2m}%</span>`;
+        document.getElementById("w-wind").innerHTML = `<strong>Wind</strong><span>${Math.round(current.wind_speed_10m)} mph</span>`;
 
         // Mocking UV index based on time of day and cloud cover for this demo (or hardcoded)
         const hour = new Date().getHours();
@@ -124,7 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (hour > 8 && hour < 17) {
             mockUv = current.weather_code <= 3 ? 5 : 2;
         }
-        document.getElementById("w-uv").innerText = `UV Index: ${mockUv}`;
+        document.getElementById("w-uv").innerHTML = `<strong>UV Index</strong><span>${mockUv}</span>`;
     }
 
     // Update Hourly Forecast UI (Next 8 Hours)
