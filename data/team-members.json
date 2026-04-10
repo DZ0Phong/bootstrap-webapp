@@ -1,0 +1,309 @@
+[
+  {
+    "id": "alice-nguyen",
+    "name": "Alice Nguyen",
+    "role": "Future Frontend Developer",
+    "tagline": "Design-minded builder focused on polished, user-friendly web experiences.",
+    "location": "Ho Chi Minh City, Vietnam",
+    "email": "alice.nguyen@email.com",
+    "phone": "+84 912 345 678",
+    "linkedin": "https://www.linkedin.com/in/alice-nguyen",
+    "github": "https://github.com/alice-nguyen",
+    "website": "https://alice-portfolio.example.com",
+    "photo": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=80",
+    "themeColor": "#ffd86f",
+    "summary": "Aspiring frontend developer with a strong interest in accessible interfaces, design systems, and responsive product experiences. Enjoys translating ideas into clean layouts and reusable components.",
+    "skills": [
+      { "name": "HTML & CSS", "level": 92 },
+      { "name": "JavaScript", "level": 86 },
+      { "name": "React", "level": 80 },
+      { "name": "UI Implementation", "level": 88 }
+    ],
+    "experience": [
+      {
+        "title": "Web Development Intern",
+        "company": "Thech Solution",
+        "period": "Summer 2025",
+        "bullets": [
+          "Assisted in building and maintaining company landing pages using HTML, CSS, and JavaScript.",
+          "Collaborated with senior developers to improve responsiveness and component consistency."
+        ]
+      },
+      {
+        "title": "Freelance Project Developer",
+        "company": "Personal Projects",
+        "period": "2024 - Present",
+        "bullets": [
+          "Built portfolio and showcase websites with reusable components and clean layouts.",
+          "Practiced responsive design, accessibility basics, and UI polish on side projects."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "title": "Bachelor of Science in Computer Science",
+        "organization": "University of Technology",
+        "period": "2022 - 2026"
+      },
+      {
+        "title": "Frontend Development Bootcamp",
+        "organization": "CodeCamp Asia",
+        "period": "2024"
+      }
+    ],
+    "projects": [
+      {
+        "title": "Personal Portfolio",
+        "description": "Built a responsive portfolio website to showcase projects and profile content."
+      },
+      {
+        "title": "Task Manager UI",
+        "description": "Created a multi-screen task management interface with reusable design patterns."
+      }
+    ],
+    "certifications": [
+      "Responsive Web Design",
+      "JavaScript Fundamentals"
+    ]
+  },
+  {
+    "id": "bao-tran",
+    "name": "Bao Tran",
+    "role": "Future Backend Engineer",
+    "tagline": "Interested in APIs, system design basics, and reliable backend logic.",
+    "location": "Da Nang, Vietnam",
+    "email": "bao.tran@email.com",
+    "phone": "+84 934 567 890",
+    "linkedin": "https://www.linkedin.com/in/bao-tran",
+    "github": "https://github.com/bao-tran",
+    "website": "",
+    "photo": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80",
+    "themeColor": "#b8d6ff",
+    "summary": "Aspiring backend engineer who enjoys working with application logic, data flow, and structured APIs. Focused on learning clean architecture and maintainable server-side development.",
+    "skills": [
+      { "name": "Java", "level": 88 },
+      { "name": "Spring Boot", "level": 80 },
+      { "name": "SQL", "level": 84 },
+      { "name": "REST APIs", "level": 86 }
+    ],
+    "experience": [
+      {
+        "title": "Backend Intern",
+        "company": "BlueOrbit Software",
+        "period": "2025",
+        "bullets": [
+          "Implemented basic CRUD APIs and worked with relational database tables.",
+          "Learned repository, service, and controller separation in Spring Boot."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "title": "Software Engineering",
+        "organization": "FPT University",
+        "period": "2022 - 2026"
+      }
+    ],
+    "projects": [
+      {
+        "title": "Course API Service",
+        "description": "Developed a backend service for course management with pagination and filtering."
+      }
+    ],
+    "certifications": [
+      "SQL for Developers"
+    ]
+  },
+  {
+    "id": "chi-le",
+    "name": "Chi Le",
+    "role": "Future Full Stack Developer",
+    "tagline": "Enjoys connecting frontend interaction with backend data flow.",
+    "location": "Can Tho, Vietnam",
+    "email": "chi.le@email.com",
+    "phone": "+84 903 111 222",
+    "linkedin": "https://www.linkedin.com/in/chi-le",
+    "github": "https://github.com/chi-le",
+    "website": "",
+    "photo": "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=900&q=80",
+    "themeColor": "#ffcabd",
+    "summary": "Aspiring full stack developer with balanced interest in UI building and backend services. Likes creating complete feature flows from database to user interface.",
+    "skills": [
+      { "name": "JavaScript", "level": 85 },
+      { "name": "Node.js", "level": 80 },
+      { "name": "React", "level": 82 },
+      { "name": "MongoDB", "level": 75 }
+    ],
+    "experience": [
+      {
+        "title": "Full Stack Project Member",
+        "company": "Academic Team Project",
+        "period": "2025",
+        "bullets": [
+          "Implemented task features across frontend forms and backend endpoints.",
+          "Coordinated API integration and UI testing in a group setting."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "title": "Computer Science",
+        "organization": "Can Tho University",
+        "period": "2022 - 2026"
+      }
+    ],
+    "projects": [
+      {
+        "title": "Student Collaboration App",
+        "description": "Built a task-sharing web app with authentication and team dashboards."
+      }
+    ],
+    "certifications": [
+      "Frontend Development Foundations"
+    ]
+  },
+  {
+    "id": "david-pham",
+    "name": "David Pham",
+    "role": "Future Data Scientist",
+    "tagline": "Curious about analytics, machine learning, and insight-driven products.",
+    "location": "Hanoi, Vietnam",
+    "email": "david.pham@email.com",
+    "phone": "+84 905 333 444",
+    "linkedin": "https://www.linkedin.com/in/david-pham",
+    "github": "https://github.com/david-pham",
+    "website": "",
+    "photo": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=900&q=80",
+    "themeColor": "#9ce7d7",
+    "summary": "Aspiring data scientist with interest in turning raw data into useful stories and predictions. Enjoys dashboards, visual communication, and practical machine learning workflows.",
+    "skills": [
+      { "name": "Python", "level": 90 },
+      { "name": "Pandas", "level": 84 },
+      { "name": "Visualization", "level": 82 },
+      { "name": "Machine Learning", "level": 76 }
+    ],
+    "experience": [
+      {
+        "title": "Data Analysis Trainee",
+        "company": "Insight Lab",
+        "period": "2025",
+        "bullets": [
+          "Cleaned datasets and built exploratory charts for internal reports.",
+          "Practiced feature preparation and baseline model evaluation."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "title": "Information Systems",
+        "organization": "National Economics University",
+        "period": "2022 - 2026"
+      }
+    ],
+    "projects": [
+      {
+        "title": "Sales Insight Dashboard",
+        "description": "Analyzed monthly retail performance and summarized trends with charts."
+      }
+    ],
+    "certifications": [
+      "Google Data Analytics"
+    ]
+  },
+  {
+    "id": "emma-hoang",
+    "name": "Emma Hoang",
+    "role": "Future Mobile Developer",
+    "tagline": "Focused on smooth app flows, practical UX, and clean mobile interfaces.",
+    "location": "Hue, Vietnam",
+    "email": "emma.hoang@email.com",
+    "phone": "+84 907 555 666",
+    "linkedin": "https://www.linkedin.com/in/emma-hoang",
+    "github": "https://github.com/emma-hoang",
+    "website": "",
+    "photo": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=900&q=80",
+    "themeColor": "#ffb6d5",
+    "summary": "Aspiring mobile developer interested in native and cross-platform app experiences. Enjoys thoughtful interactions, mobile-first layouts, and intuitive app structure.",
+    "skills": [
+      { "name": "Flutter", "level": 84 },
+      { "name": "Android Basics", "level": 76 },
+      { "name": "UI Prototyping", "level": 88 },
+      { "name": "Firebase", "level": 72 }
+    ],
+    "experience": [
+      {
+        "title": "Mobile App Team Member",
+        "company": "Campus Product Lab",
+        "period": "2025",
+        "bullets": [
+          "Designed and implemented mobile flows for event and profile features.",
+          "Tested responsive behavior across multiple screen sizes."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "title": "Software Engineering",
+        "organization": "Hue University",
+        "period": "2022 - 2026"
+      }
+    ],
+    "projects": [
+      {
+        "title": "Campus Event Mobile UI",
+        "description": "Created a mobile prototype for event browsing, booking, and reminders."
+      }
+    ],
+    "certifications": [
+      "Mobile UX Essentials"
+    ]
+  },
+  {
+    "id": "phong-vo",
+    "name": "Phong Vo",
+    "role": "Future DevOps Engineer",
+    "tagline": "Interested in automation, deployment workflows, and infrastructure reliability.",
+    "location": "Nha Trang, Vietnam",
+    "email": "phong.vo@email.com",
+    "phone": "+84 909 777 888",
+    "linkedin": "https://www.linkedin.com/in/phong-vo",
+    "github": "https://github.com/phong-vo",
+    "website": "",
+    "photo": "https://images.unsplash.com/photo-1504593811423-6dd665756598?auto=format&fit=crop&w=900&q=80",
+    "themeColor": "#cbb9ff",
+    "summary": "Aspiring DevOps engineer exploring CI/CD, cloud deployment, and reliable release workflows. Enjoys creating repeatable processes and improving team productivity.",
+    "skills": [
+      { "name": "GitHub Actions", "level": 82 },
+      { "name": "Docker", "level": 78 },
+      { "name": "Linux", "level": 80 },
+      { "name": "Cloud Basics", "level": 74 }
+    ],
+    "experience": [
+      {
+        "title": "DevOps Project Contributor",
+        "company": "Student Engineering Group",
+        "period": "2025",
+        "bullets": [
+          "Configured simple CI pipelines for static deployment and build validation.",
+          "Documented setup steps to help teammates ship changes more safely."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "title": "Information Technology",
+        "organization": "Nha Trang University",
+        "period": "2022 - 2026"
+      }
+    ],
+    "projects": [
+      {
+        "title": "Static Deployment Pipeline",
+        "description": "Set up automated static site publishing for a collaborative team project."
+      }
+    ],
+    "certifications": [
+      "DevOps Foundations"
+    ]
+  }
+]

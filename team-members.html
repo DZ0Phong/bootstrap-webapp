@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Members</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --text: #f8fafc;
+            --muted: rgba(255, 255, 255, 0.78);
+            --card-bg: rgba(8, 16, 38, 0.48);
+            --card-border: rgba(255, 255, 255, 0.18);
+            --glow: 0 30px 60px rgba(0, 0, 0, 0.28);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Outfit', sans-serif;
+            color: var(--text);
+            background:
+                linear-gradient(rgba(19, 16, 53, 0.36), rgba(19, 16, 53, 0.72)),
+                url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=80") center/cover fixed;
+        }
+
+        .page-shell {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 28px 20px 44px;
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+
+        .back-link,
+        .ghost-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 16px;
+            border-radius: 999px;
+            color: var(--text);
+            text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            font-weight: 600;
+        }
+
+        .ghost-button.active {
+            background: rgba(255, 216, 111, 0.22);
+            border-color: rgba(255, 216, 111, 0.48);
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 7vw, 5.8rem);
+            margin: 0;
+            color: #ffe7a4;
+            text-shadow: 0 6px 26px rgba(255, 212, 122, 0.34);
+        }
+
+        .hero-copy {
+            max-width: 760px;
+            margin: 18px auto 0;
+            color: var(--muted);
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .hero-actions {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-top: 22px;
+        }
+
+        .solid-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 18px;
+            border-radius: 999px;
+            border: 0;
+            background: linear-gradient(135deg, #ffd86f, #ffb86c);
+            color: #24103a;
+            text-decoration: none;
+            font-weight: 800;
+            box-shadow: 0 18px 36px rgba(255, 191, 93, 0.24);
+        }
+
+        .stage {
+            position: relative;
+            min-height: 600px;
+            border-radius: 36px;
+            padding: 28px 76px 88px;
+            background: linear-gradient(180deg, rgba(16, 12, 38, 0.22), rgba(16, 12, 38, 0.52));
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            backdrop-filter: blur(12px);
+            overflow: hidden;
+            box-shadow: var(--glow);
+        }
+
+        .carousel-track {
+            position: relative;
+            height: 480px;
+            cursor: grab;
+            user-select: none;
+            touch-action: pan-y;
+        }
+
+        .carousel-track.is-dragging {
+            cursor: grabbing;
+        }
+
+        .member-card {
+            position: absolute;
+            top: 54%;
+            left: 50%;
+            transform-origin: center center;
+            width: 220px;
+            text-align: center;
+            transition: transform 0.55s ease, opacity 0.55s ease, filter 0.55s ease;
+            opacity: 0.34;
+            filter: blur(1px);
+        }
+
+        .member-card.is-active {
+            opacity: 1;
+            filter: none;
+            z-index: 5;
+        }
+
+        .member-card.is-near {
+            opacity: 0.82;
+            filter: none;
+        }
+
+        .member-link {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .member-avatar {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid rgba(255, 255, 255, 0.94);
+            box-shadow: 0 22px 50px rgba(0, 0, 0, 0.24);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .member-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .member-name {
+            margin: 18px 0 6px;
+            font-weight: 800;
+            font-size: 1.85rem;
+            text-shadow: 0 2px 18px rgba(0, 0, 0, 0.32);
+        }
+
+        .member-role {
+            margin: 0;
+            color: #fff08a;
+            font-size: 1.05rem;
+            font-weight: 700;
+            text-shadow: 0 2px 14px rgba(0, 0, 0, 0.28);
+        }
+
+        .member-tagline {
+            max-width: 320px;
+            margin: 12px auto 0;
+            color: var(--muted);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .member-card.is-near .member-name {
+            font-size: 1.2rem;
+        }
+
+        .member-card.is-near .member-role {
+            font-size: 0.92rem;
+        }
+
+        .member-card.is-near .member-tagline,
+        .member-card:not(.is-active):not(.is-near) .member-tagline {
+            display: none;
+        }
+
+        .member-card:not(.is-active):not(.is-near) .member-name {
+            font-size: 0.82rem;
+            margin-top: 12px;
+            margin-bottom: 4px;
+            opacity: 0.85;
+        }
+
+        .member-card:not(.is-active):not(.is-near) .member-role {
+            font-size: 0.72rem;
+            opacity: 0.72;
+        }
+
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 64px;
+            height: 64px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 0;
+            color: white;
+            background: rgba(24, 15, 41, 0.48);
+            backdrop-filter: blur(12px);
+            font-size: 2rem;
+            z-index: 8;
+        }
+
+        .nav-button:hover {
+            background: rgba(255, 255, 255, 0.16);
+        }
+
+        .nav-prev {
+            left: 20px;
+        }
+
+        .nav-next {
+            right: 20px;
+        }
+
+        .dots {
+            position: absolute;
+            left: 50%;
+            bottom: 26px;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 9;
+        }
+
+        .dot {
+            width: 14px;
+            height: 14px;
+            border: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.82);
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .dot.active {
+            background: #ffe172;
+            transform: scale(1.15);
+        }
+
+        .grid-view {
+            display: none;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .grid-view.active {
+            display: grid;
+        }
+
+        .grid-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 28px;
+            padding: 22px;
+            text-align: center;
+            text-decoration: none;
+            color: inherit;
+            backdrop-filter: blur(12px);
+            box-shadow: var(--glow);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .grid-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 216, 111, 0.5);
+        }
+
+        .grid-card .member-avatar {
+            width: 160px;
+            margin: 0 auto;
+        }
+
+        .grid-card .member-name {
+            font-size: 1.4rem;
+        }
+
+        .fade-in {
+            animation: fadeInCard 0.65s ease;
+        }
+
+        .content-fade {
+            animation: fadeContent 0.45s ease;
+        }
+
+        .sr-status {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+        }
+
+        @keyframes fadeInCard {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeContent {
+            from {
+                opacity: 0;
+                transform: translateY(14px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 1100px) {
+            .stage {
+                padding: 24px 48px 80px;
+            }
+
+            .grid-view.active {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-shell {
+                padding: 20px 14px 36px;
+            }
+
+            .topbar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .stage {
+                padding: 20px 20px 78px;
+                min-height: 500px;
+            }
+
+            .carousel-track {
+                height: 390px;
+            }
+
+            .member-card {
+                width: 170px;
+            }
+
+            .member-name {
+                font-size: 1.45rem;
+            }
+
+            .nav-button {
+                width: 52px;
+                height: 52px;
+                font-size: 1.6rem;
+            }
+
+            .nav-prev {
+                left: 10px;
+            }
+
+            .nav-next {
+                right: 10px;
+            }
+
+            .grid-view.active {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-shell">
+        <div class="topbar">
+            <a href="index.html" class="back-link"><i class="bi bi-arrow-left"></i>Back to Dashboard</a>
+            <button class="ghost-button" type="button" id="viewToggle"><i class="bi bi-grid-3x3-gap-fill"></i><span>View All Members</span></button>
+        </div>
+
+        <section class="hero">
+            <h1 class="hero-title">Meet Our Team</h1>
+            <p class="hero-copy">Browse the team carousel, pause on hover, switch to a full member grid when needed, and click any profile image or name to jump directly into that member's CV page.</p>
+            <div class="hero-actions">
+                <button class="solid-button" type="button" id="playPauseButton"><i class="bi bi-pause-circle-fill"></i><span>Pause Slideshow</span></button>
+                <a class="ghost-button" href="cv.html?id=alice-nguyen"><i class="bi bi-person-vcard"></i><span>Open Sample CV</span></a>
+            </div>
+        </section>
+
+        <section class="stage" aria-label="Team member showcase">
+            <button class="nav-button nav-prev" type="button" id="prevButton" aria-label="Previous member"><i class="bi bi-chevron-left"></i></button>
+            <button class="nav-button nav-next" type="button" id="nextButton" aria-label="Next member"><i class="bi bi-chevron-right"></i></button>
+
+            <div class="carousel-track" id="carouselTrack" tabindex="0" aria-live="polite"></div>
+            <div class="grid-view" id="gridView"></div>
+            <div class="dots" id="dots"></div>
+            <div class="sr-status" id="carouselStatus" aria-live="polite"></div>
+        </section>
+    </div>
+
+    <script>
+        const DATA_URL = "data/team-members.json";
+        const AUTO_PLAY_MS = 3600;
+
+        const carouselTrack = document.getElementById("carouselTrack");
+        const gridView = document.getElementById("gridView");
+        const dots = document.getElementById("dots");
+        const prevButton = document.getElementById("prevButton");
+        const nextButton = document.getElementById("nextButton");
+        const viewToggle = document.getElementById("viewToggle");
+        const playPauseButton = document.getElementById("playPauseButton");
+        const carouselStatus = document.getElementById("carouselStatus");
+
+        const state = {
+            members: [],
+            activeIndex: 0,
+            timerId: null,
+            isManualPause: false,
+            isHoverPaused: false,
+            showAll: false,
+            dragStartX: 0,
+            dragCurrentX: 0,
+            dragMoved: false,
+            wheelLocked: false
+        };
+
+        async function loadMembers() {
+            try {
+                const response = await fetch(DATA_URL);
+                if (!response.ok) {
+                    throw new Error("Failed to load team data");
+                }
+
+                state.members = await response.json();
+                render();
+                startAutoplay();
+            } catch (error) {
+                carouselTrack.innerHTML = `
+                    <div class="text-center w-100">
+                        <h2 class="fw-bold">Unable to load team members</h2>
+                        <p class="mb-0 text-white-50">Please check the JSON file path and try again.</p>
+                    </div>
+                `;
+            }
+        }
+
+        function getLink(member) {
+            return `cv.html?id=${encodeURIComponent(member.id)}`;
+        }
+
+        function render() {
+            if (!state.members.length) {
+                return;
+            }
+
+            renderCarousel();
+            renderDots();
+            renderGrid();
+            updateMode();
+            updateStatus();
+        }
+
+        function renderCarousel() {
+            const slots = getSlots();
+            carouselTrack.innerHTML = slots.map(slot => {
+                const member = state.members[wrapIndex(state.activeIndex + slot.offset)];
+                const opacityClass = slot.offset === 0 ? "is-active" : Math.abs(slot.offset) === 1 ? "is-near" : "";
+                const translate = `translate(-50%, -50%) translateX(${slot.x}px) scale(${slot.scale})`;
+                const description = slot.offset === 0
+                    ? member.tagline
+                    : Math.abs(slot.offset) === 1
+                        ? member.role
+                        : "";
+
+                return `
+                    <article class="member-card ${opacityClass}" style="transform:${translate}; z-index:${slot.zIndex}; opacity:${slot.opacity}; filter:${slot.blur};" data-index="${member.id}" data-base-x="${slot.x}" data-scale="${slot.scale}">
+                        <a class="member-link" href="${getLink(member)}">
+                            <div class="member-avatar" style="box-shadow: 0 22px 50px ${hexToShadow(member.themeColor)};">
+                                <img src="${member.photo}" alt="${member.name}">
+                            </div>
+                            <h2 class="member-name content-fade">${member.name}</h2>
+                        </a>
+                        <p class="member-role content-fade">${member.role}</p>
+                        <p class="member-tagline content-fade">${description}</p>
+                    </article>
+                `;
+            }).join("");
+
+            carouselTrack.querySelectorAll(".member-card").forEach(card => {
+                card.addEventListener("mouseenter", () => setHoverPause(true));
+                card.addEventListener("mouseleave", () => setHoverPause(false));
+            });
+
+        }
+
+        function renderDots() {
+            dots.innerHTML = state.members.map((member, index) => `
+                <button class="dot ${index === state.activeIndex ? "active" : ""}" type="button" aria-label="Go to ${member.name}" data-index="${index}"></button>
+            `).join("");
+
+            dots.querySelectorAll(".dot").forEach(dot => {
+                dot.addEventListener("click", () => {
+                    state.activeIndex = Number(dot.dataset.index);
+                    render();
+                });
+            });
+        }
+
+        function renderGrid() {
+            gridView.innerHTML = state.members.map(member => `
+                <a class="grid-card fade-in" href="${getLink(member)}">
+                    <div class="member-avatar" style="box-shadow: 0 22px 50px ${hexToShadow(member.themeColor)};">
+                        <img src="${member.photo}" alt="${member.name}">
+                    </div>
+                    <h2 class="member-name">${member.name}</h2>
+                    <p class="member-role">${member.role}</p>
+                    <p class="member-tagline">${member.tagline}</p>
+                </a>
+            `).join("");
+        }
+
+        function updateMode() {
+            const showCarousel = !state.showAll;
+            carouselTrack.style.display = showCarousel ? "block" : "none";
+            dots.style.display = showCarousel ? "flex" : "none";
+            prevButton.style.display = showCarousel ? "inline-flex" : "none";
+            nextButton.style.display = showCarousel ? "inline-flex" : "none";
+            gridView.classList.toggle("active", state.showAll);
+            viewToggle.classList.toggle("active", state.showAll);
+            viewToggle.innerHTML = state.showAll
+                ? `<i class="bi bi-layout-sidebar-inset"></i><span>Back to Carousel</span>`
+                : `<i class="bi bi-grid-3x3-gap-fill"></i><span>View All Members</span>`;
+        }
+
+        function updateStatus() {
+            const member = state.members[state.activeIndex];
+            if (!member) {
+                return;
+            }
+
+            carouselStatus.textContent = `Showing ${member.name}, ${member.role}.`;
+        }
+
+        function wrapIndex(index) {
+            const total = state.members.length;
+            return (index + total) % total;
+        }
+
+        function getSlots() {
+            if (window.innerWidth <= 768) {
+                return [
+                    { offset: -1, x: -120, scale: 0.74, opacity: 0.58, blur: "blur(0px)", zIndex: 4 },
+                    { offset: 0, x: 0, scale: 1.02, opacity: 1, blur: "none", zIndex: 6 },
+                    { offset: 1, x: 120, scale: 0.74, opacity: 0.58, blur: "blur(0px)", zIndex: 4 }
+                ];
+            }
+
+            return [
+                { offset: -2, x: -430, scale: 0.62, opacity: 0.32, blur: "blur(1px)", zIndex: 2 },
+                { offset: -1, x: -225, scale: 0.9, opacity: 0.82, blur: "none", zIndex: 4 },
+                { offset: 0, x: 0, scale: 1.16, opacity: 1, blur: "none", zIndex: 6 },
+                { offset: 1, x: 225, scale: 0.9, opacity: 0.82, blur: "none", zIndex: 4 },
+                { offset: 2, x: 430, scale: 0.62, opacity: 0.32, blur: "blur(1px)", zIndex: 2 }
+            ];
+        }
+
+        function goToNext() {
+            state.activeIndex = (state.activeIndex + 1) % state.members.length;
+            render();
+        }
+
+        function goToPrev() {
+            state.activeIndex = (state.activeIndex - 1 + state.members.length) % state.members.length;
+            render();
+        }
+
+        function startAutoplay() {
+            stopAutoplay();
+            if (state.isManualPause || state.isHoverPaused || state.showAll) {
+                return;
+            }
+
+            state.timerId = window.setInterval(goToNext, AUTO_PLAY_MS);
+        }
+
+        function stopAutoplay() {
+            if (state.timerId) {
+                window.clearInterval(state.timerId);
+                state.timerId = null;
+            }
+        }
+
+        function syncPlayPauseButton() {
+            playPauseButton.innerHTML = state.isManualPause
+                ? `<i class="bi bi-play-circle-fill"></i><span>Resume Slideshow</span>`
+                : `<i class="bi bi-pause-circle-fill"></i><span>Pause Slideshow</span>`;
+        }
+
+        function setHoverPause(value) {
+            state.isHoverPaused = value;
+            if (value) {
+                stopAutoplay();
+                return;
+            }
+
+            startAutoplay();
+        }
+
+        function pauseAutoplay() {
+            state.isManualPause = true;
+            stopAutoplay();
+            syncPlayPauseButton();
+        }
+
+        function resumeAutoplayIfNeeded() {
+            if (state.showAll) {
+                return;
+            }
+
+            state.isManualPause = false;
+            syncPlayPauseButton();
+            startAutoplay();
+        }
+
+        function handleDragStart(clientX) {
+            state.dragStartX = clientX;
+            state.dragCurrentX = clientX;
+            state.dragMoved = false;
+            carouselTrack.classList.add("is-dragging");
+            setHoverPause(true);
+        }
+
+        function handleDragMove(clientX) {
+            if (!state.dragStartX) {
+                return;
+            }
+
+            state.dragCurrentX = clientX;
+            if (Math.abs(state.dragCurrentX - state.dragStartX) > 8) {
+                state.dragMoved = true;
+            }
+        }
+
+        function handleDragEnd() {
+            if (!state.dragStartX) {
+                return;
+            }
+
+            const deltaX = state.dragCurrentX - state.dragStartX;
+            carouselTrack.classList.remove("is-dragging");
+
+            if (deltaX <= -50) {
+                goToNext();
+            } else if (deltaX >= 50) {
+                goToPrev();
+            }
+
+            state.dragStartX = 0;
+            state.dragCurrentX = 0;
+            window.setTimeout(() => {
+                state.dragMoved = false;
+            }, 0);
+
+            if (!state.isManualPause && !state.showAll) {
+                setHoverPause(false);
+            }
+        }
+
+        function handleWheelNavigation(event) {
+            if (state.showAll || state.wheelLocked) {
+                return;
+            }
+
+            const primaryDelta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
+            if (Math.abs(primaryDelta) < 18) {
+                return;
+            }
+
+            event.preventDefault();
+            state.wheelLocked = true;
+
+            if (primaryDelta > 0) {
+                goToNext();
+            } else {
+                goToPrev();
+            }
+
+            startAutoplay();
+            window.setTimeout(() => {
+                state.wheelLocked = false;
+            }, 420);
+        }
+
+        function hexToShadow(hex) {
+            const clean = hex.replace("#", "");
+            const bigint = parseInt(clean, 16);
+            const r = (bigint >> 16) & 255;
+            const g = (bigint >> 8) & 255;
+            const b = bigint & 255;
+            return `rgba(${r}, ${g}, ${b}, 0.26)`;
+        }
+
+        prevButton.addEventListener("click", () => {
+            goToPrev();
+            startAutoplay();
+        });
+
+        nextButton.addEventListener("click", () => {
+            goToNext();
+            startAutoplay();
+        });
+
+        viewToggle.addEventListener("click", () => {
+            state.showAll = !state.showAll;
+            if (state.showAll) {
+                stopAutoplay();
+            } else {
+                startAutoplay();
+            }
+            updateMode();
+        });
+
+        playPauseButton.addEventListener("click", () => {
+            if (state.isManualPause) {
+                resumeAutoplayIfNeeded();
+            } else {
+                pauseAutoplay();
+            }
+        });
+
+        carouselTrack.addEventListener("mouseenter", () => setHoverPause(true));
+        carouselTrack.addEventListener("mouseleave", () => {
+            if (!state.dragStartX && !state.isManualPause) {
+                setHoverPause(false);
+            }
+        });
+        carouselTrack.addEventListener("mousedown", event => handleDragStart(event.clientX));
+        carouselTrack.addEventListener("mousemove", event => handleDragMove(event.clientX));
+        carouselTrack.addEventListener("mouseup", handleDragEnd);
+        carouselTrack.addEventListener("mouseleave", handleDragEnd);
+        carouselTrack.addEventListener("touchstart", event => handleDragStart(event.touches[0].clientX), { passive: true });
+        carouselTrack.addEventListener("touchmove", event => handleDragMove(event.touches[0].clientX), { passive: true });
+        carouselTrack.addEventListener("touchend", handleDragEnd);
+        carouselTrack.addEventListener("wheel", handleWheelNavigation, { passive: false });
+        carouselTrack.addEventListener("click", event => {
+            if (state.dragMoved) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+        }, true);
+
+        carouselTrack.addEventListener("keydown", event => {
+            if (event.key === "ArrowRight") {
+                goToNext();
+                startAutoplay();
+            }
+
+            if (event.key === "ArrowLeft") {
+                goToPrev();
+                startAutoplay();
+            }
+        });
+
+        document.addEventListener("keydown", event => {
+            if (state.showAll) {
+                return;
+            }
+
+            if (event.key === "ArrowRight") {
+                goToNext();
+                startAutoplay();
+            }
+
+            if (event.key === "ArrowLeft") {
+                goToPrev();
+                startAutoplay();
+            }
+        });
+
+        window.addEventListener("resize", render);
+
+        loadMembers();
+    </script>
+</body>
+
+</html>
