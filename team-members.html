@@ -26,6 +26,8 @@
             min-height: 100vh;
             font-family: 'Outfit', sans-serif;
             color: var(--text);
+            user-select: none;
+            -webkit-user-select: none;
             background:
                 linear-gradient(rgba(19, 16, 53, 0.36), rgba(19, 16, 53, 0.72)),
                 url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=80") center/cover fixed;
@@ -158,6 +160,7 @@
         .member-link {
             text-decoration: none;
             color: inherit;
+            -webkit-user-drag: none;
         }
 
         .member-avatar {
@@ -174,6 +177,8 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            pointer-events: none;
+            -webkit-user-drag: none;
         }
 
         .member-name {
@@ -440,6 +445,7 @@
     <script>
         const DATA_URL = "data/team-members.json";
         const AUTO_PLAY_MS = 3600;
+        const DRAG_THRESHOLD = 140;
 
         const carouselTrack = document.getElementById("carouselTrack");
         const gridView = document.getElementById("gridView");
@@ -460,7 +466,8 @@
             dragStartX: 0,
             dragCurrentX: 0,
             dragMoved: false,
-            wheelLocked: false
+            wheelLocked: false,
+            isPointerDown: false
         };
 
         async function loadMembers() {
@@ -662,6 +669,11 @@
         }
 
         function handleDragStart(clientX) {
+            if (state.showAll) {
+                return;
+            }
+
+            state.isPointerDown = true;
             state.dragStartX = clientX;
             state.dragCurrentX = clientX;
             state.dragMoved = false;
@@ -670,30 +682,36 @@
         }
 
         function handleDragMove(clientX) {
-            if (!state.dragStartX) {
+            if (!state.isPointerDown || !state.dragStartX) {
                 return;
             }
 
             state.dragCurrentX = clientX;
-            if (Math.abs(state.dragCurrentX - state.dragStartX) > 8) {
+            const deltaX = state.dragCurrentX - state.dragStartX;
+            if (Math.abs(deltaX) > 8) {
                 state.dragMoved = true;
+            }
+
+            if (deltaX <= -DRAG_THRESHOLD) {
+                goToNext();
+                state.dragStartX = clientX;
+                state.dragCurrentX = clientX;
+                state.dragMoved = false;
+            } else if (deltaX >= DRAG_THRESHOLD) {
+                goToPrev();
+                state.dragStartX = clientX;
+                state.dragCurrentX = clientX;
+                state.dragMoved = false;
             }
         }
 
         function handleDragEnd() {
-            if (!state.dragStartX) {
+            if (!state.isPointerDown) {
                 return;
             }
-
-            const deltaX = state.dragCurrentX - state.dragStartX;
             carouselTrack.classList.remove("is-dragging");
 
-            if (deltaX <= -50) {
-                goToNext();
-            } else if (deltaX >= 50) {
-                goToPrev();
-            }
-
+            state.isPointerDown = false;
             state.dragStartX = 0;
             state.dragCurrentX = 0;
             window.setTimeout(() => {
@@ -769,17 +787,28 @@
 
         carouselTrack.addEventListener("mouseenter", () => setHoverPause(true));
         carouselTrack.addEventListener("mouseleave", () => {
-            if (!state.dragStartX && !state.isManualPause) {
+            if (!state.isPointerDown && !state.isManualPause) {
                 setHoverPause(false);
             }
         });
-        carouselTrack.addEventListener("mousedown", event => handleDragStart(event.clientX));
-        carouselTrack.addEventListener("mousemove", event => handleDragMove(event.clientX));
+        carouselTrack.addEventListener("mousedown", event => {
+            if (event.button !== 0) {
+                return;
+            }
+
+            event.preventDefault();
+            handleDragStart(event.clientX);
+        });
+        window.addEventListener("mousemove", event => handleDragMove(event.clientX));
         carouselTrack.addEventListener("mouseup", handleDragEnd);
         carouselTrack.addEventListener("mouseleave", handleDragEnd);
         carouselTrack.addEventListener("touchstart", event => handleDragStart(event.touches[0].clientX), { passive: true });
         carouselTrack.addEventListener("touchmove", event => handleDragMove(event.touches[0].clientX), { passive: true });
         carouselTrack.addEventListener("touchend", handleDragEnd);
+        window.addEventListener("mouseup", handleDragEnd);
+        window.addEventListener("touchend", handleDragEnd);
+        window.addEventListener("blur", handleDragEnd);
+        window.addEventListener("dragstart", event => event.preventDefault());
         carouselTrack.addEventListener("wheel", handleWheelNavigation, { passive: false });
         carouselTrack.addEventListener("click", event => {
             if (state.dragMoved) {
