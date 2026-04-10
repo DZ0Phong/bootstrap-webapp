@@ -1,99 +1,193 @@
 [
   {
-    "id": "alice-nguyen",
-    "name": "Alice Nguyen",
-    "role": "Future Frontend Developer",
-    "tagline": "Design-minded builder focused on polished, user-friendly web experiences.",
-    "location": "Ho Chi Minh City, Vietnam",
-    "email": "alice.nguyen@email.com",
-    "phone": "+84 912 345 678",
-    "linkedin": "https://www.linkedin.com/in/alice-nguyen",
-    "github": "https://github.com/alice-nguyen",
-    "website": "https://alice-portfolio.example.com",
-    "photo": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=80",
-    "themeColor": "#ffd86f",
-    "summary": "Aspiring frontend developer with a strong interest in accessible interfaces, design systems, and responsive product experiences. Enjoys translating ideas into clean layouts and reusable components.",
+    "id": "tran-quang-hieu",
+    "name": "Tran Quang Hieu",
+    "role": "Software Engineering Student",
+    "tagline": "Focused on building reliable web products and growing through real project work.",
+    "location": "Vietnam",
+    "email": "",
+    "phone": "",
+    "linkedin": "",
+    "github": "",
+    "website": "",
+    "photo": "",
+    "cvPdf": "assets/cv/tran-quang-hieu.pdf",
+    "themeColor": "#d8b77c",
+    "summary": "Tran Quang Hieu is part of the team’s software engineering track and is actively building hands-on project experience. The original PDF CV is attached for the complete profile and detailed background.",
     "skills": [
-      { "name": "HTML & CSS", "level": 92 },
-      { "name": "JavaScript", "level": 86 },
-      { "name": "React", "level": 80 },
-      { "name": "UI Implementation", "level": 88 }
+      { "name": "Web Development", "level": 78 },
+      { "name": "Problem Solving", "level": 80 },
+      { "name": "Team Collaboration", "level": 82 },
+      { "name": "Project Delivery", "level": 76 }
     ],
     "experience": [
       {
-        "title": "Web Development Intern",
-        "company": "Thech Solution",
-        "period": "Summer 2025",
+        "title": "Academic Project Contributor",
+        "company": "Team Coursework",
+        "period": "Recent Projects",
         "bullets": [
-          "Assisted in building and maintaining company landing pages using HTML, CSS, and JavaScript.",
-          "Collaborated with senior developers to improve responsiveness and component consistency."
-        ]
-      },
-      {
-        "title": "Freelance Project Developer",
-        "company": "Personal Projects",
-        "period": "2024 - Present",
-        "bullets": [
-          "Built portfolio and showcase websites with reusable components and clean layouts.",
-          "Practiced responsive design, accessibility basics, and UI polish on side projects."
+          "Contributed to collaborative software projects with a focus on implementation quality and steady delivery.",
+          "Worked in a team environment to complete feature work, testing, and assignment milestones."
         ]
       }
     ],
     "education": [
       {
-        "title": "Bachelor of Science in Computer Science",
-        "organization": "University of Technology",
-        "period": "2022 - 2026"
-      },
-      {
-        "title": "Frontend Development Bootcamp",
-        "organization": "CodeCamp Asia",
-        "period": "2024"
+        "title": "Software Engineering",
+        "organization": "University Program",
+        "period": "Current"
       }
     ],
     "projects": [
       {
-        "title": "Personal Portfolio",
-        "description": "Built a responsive portfolio website to showcase projects and profile content."
-      },
-      {
-        "title": "Task Manager UI",
-        "description": "Created a multi-screen task management interface with reusable design patterns."
+        "title": "Course Project Work",
+        "description": "Participated in academic web application assignments and group-based implementation tasks."
       }
     ],
     "certifications": [
-      "Responsive Web Design",
-      "JavaScript Fundamentals"
+      "See original PDF CV for the full profile"
     ]
   },
   {
-    "id": "bao-tran",
-    "name": "Bao Tran",
-    "role": "Future Backend Engineer",
-    "tagline": "Interested in APIs, system design basics, and reliable backend logic.",
-    "location": "Da Nang, Vietnam",
-    "email": "bao.tran@email.com",
-    "phone": "+84 934 567 890",
-    "linkedin": "https://www.linkedin.com/in/bao-tran",
-    "github": "https://github.com/bao-tran",
+    "id": "dang-tuan-dat",
+    "name": "Dang Tuan Dat",
+    "role": "Backend Developer",
+    "tagline": "Backend-focused builder with Spring Boot, RESTful APIs, and relational database experience.",
+    "location": "Ha Noi, Viet Nam",
+    "email": "2imdanton139@gmail.com",
+    "phone": "0866522315",
+    "linkedin": "",
+    "github": "https://github.com/datdt69",
     "website": "",
-    "photo": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80",
-    "themeColor": "#b8d6ff",
-    "summary": "Aspiring backend engineer who enjoys working with application logic, data flow, and structured APIs. Focused on learning clean architecture and maintainable server-side development.",
+    "photo": "",
+    "cvPdf": "assets/cv/dang-tuan-dat.pdf",
+    "themeColor": "#8fb8ff",
+    "summary": "Fourth-year Software Engineering student at FPT University with a solid grasp of backend development, RESTful API design, and relational databases. Completed a 3-month internship building internal tools with Spring Boot and MySQL, and is looking for a junior backend role to continue growing through production-style systems.",
     "skills": [
-      { "name": "Java", "level": 88 },
-      { "name": "Spring Boot", "level": 80 },
-      { "name": "SQL", "level": 84 },
-      { "name": "REST APIs", "level": 86 }
+      { "name": "Java", "level": 90 },
+      { "name": "Spring Boot", "level": 88 },
+      { "name": "RESTful API", "level": 88 },
+      { "name": "MySQL", "level": 84 }
     ],
     "experience": [
       {
-        "title": "Backend Intern",
-        "company": "BlueOrbit Software",
-        "period": "2025",
+        "title": "Java Backend Developer",
+        "company": "License Marketplace Platform",
+        "period": "Sep 2025 - Nov 2025",
         "bullets": [
-          "Implemented basic CRUD APIs and worked with relational database tables.",
-          "Learned repository, service, and controller separation in Spring Boot."
+          "Built marketplace APIs with Spring Boot and Spring Security, including order flow, activation, and role-based access control.",
+          "Designed MySQL data models with JPA/Hibernate and supported secure payment integration."
+        ]
+      },
+      {
+        "title": "Java Backend Developer",
+        "company": "Employee Management System",
+        "period": "May 2025 - Aug 2025",
+        "bullets": [
+          "Developed an employee management web application using Java Servlet, JSP, JDBC, and MySQL.",
+          "Implemented authentication, authorization, employee CRUD, and leave approval workflows."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "title": "Bachelor of Science in Software Engineering",
+        "organization": "FPT University",
+        "period": "Sep 2022 - Jan 2027"
+      }
+    ],
+    "projects": [
+      {
+        "title": "License Marketplace Platform",
+        "description": "Designed backend business logic, role-based access control, and payment-ready API flows."
+      },
+      {
+        "title": "Employee Management",
+        "description": "Implemented MVC-based employee and leave management features with Java web technologies."
+      }
+    ],
+    "certifications": [
+      "IELTS 5.5"
+    ]
+  },
+  {
+    "id": "member-cv",
+    "name": "Member From Provided CV",
+    "role": "Team Member",
+    "tagline": "Original CV is attached and ready to be reviewed from the linked PDF file.",
+    "location": "Vietnam",
+    "email": "",
+    "phone": "",
+    "linkedin": "",
+    "github": "",
+    "website": "",
+    "photo": "",
+    "cvPdf": "assets/cv/member-cv.pdf",
+    "themeColor": "#d6c4ff",
+    "summary": "This member’s original CV file was provided as a PDF without readable text metadata in the current workspace. The profile card and CV page are wired to the attached PDF so the full official document can still be opened and downloaded immediately, and the visible name can be updated as soon as you confirm it.",
+    "skills": [
+      { "name": "Communication", "level": 76 },
+      { "name": "Teamwork", "level": 80 },
+      { "name": "Academic Projects", "level": 78 },
+      { "name": "Learning Agility", "level": 82 }
+    ],
+    "experience": [
+      {
+        "title": "Team Project Contributor",
+        "company": "Coursework Projects",
+        "period": "Current",
+        "bullets": [
+          "Participates in collaborative assignment delivery and feature implementation work.",
+          "Uses the attached CV as the source of truth for complete personal details."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "title": "University Program",
+        "organization": "See original PDF CV",
+        "period": "Current"
+      }
+    ],
+    "projects": [
+      {
+        "title": "Original CV PDF",
+        "description": "Open the linked PDF to review the member’s full background and supporting details."
+      }
+    ],
+    "certifications": [
+      "Original PDF attached"
+    ]
+  },
+  {
+    "id": "pham-tuan-kiet",
+    "name": "Pham Tuan Kiet",
+    "role": "Software Engineer Student",
+    "tagline": "FPT University student building a solid foundation in software engineering and project work.",
+    "location": "Ha Noi, Vietnam",
+    "email": "le2844018@gmail.com",
+    "phone": "0337737583",
+    "linkedin": "",
+    "github": "",
+    "website": "",
+    "photo": "",
+    "cvPdf": "assets/cv/pham-tuan-kiet.pdf",
+    "themeColor": "#ffb48c",
+    "summary": "Pham Tuan Kiet is a software engineering student at FPT University. Based on the supplied CV, the profile highlights a student background, core professional skills, and academic progression from Tran Phu - Hoan Kiem High School to FPT University.",
+    "skills": [
+      { "name": "Technical Skills", "level": 80 },
+      { "name": "Communication", "level": 78 },
+      { "name": "Time Management", "level": 79 },
+      { "name": "Research", "level": 76 }
+    ],
+    "experience": [
+      {
+        "title": "Student Project Experience",
+        "company": "Academic Work",
+        "period": "2022 - Present",
+        "bullets": [
+          "Develops practical experience through coursework, research, and project participation.",
+          "Builds a software engineering foundation while expanding technical and collaboration skills."
         ]
       }
     ],
@@ -101,209 +195,120 @@
       {
         "title": "Software Engineering",
         "organization": "FPT University",
-        "period": "2022 - 2026"
+        "period": "2022 - Now"
+      },
+      {
+        "title": "High School",
+        "organization": "Tran Phu - Hoan Kiem High School",
+        "period": "2019 - 2022"
       }
     ],
     "projects": [
       {
-        "title": "Course API Service",
-        "description": "Developed a backend service for course management with pagination and filtering."
+        "title": "Academic Portfolio",
+        "description": "Original PDF CV includes the full education, skills, and personal background details."
       }
     ],
     "certifications": [
-      "SQL for Developers"
+      "See original PDF CV for full details"
     ]
   },
   {
-    "id": "chi-le",
-    "name": "Chi Le",
-    "role": "Future Full Stack Developer",
-    "tagline": "Enjoys connecting frontend interaction with backend data flow.",
-    "location": "Can Tho, Vietnam",
-    "email": "chi.le@email.com",
-    "phone": "+84 903 111 222",
-    "linkedin": "https://www.linkedin.com/in/chi-le",
-    "github": "https://github.com/chi-le",
+    "id": "tran-trung-dung",
+    "name": "Tran Trung Dung",
+    "role": "Software Engineering Student",
+    "tagline": "Building practical development experience through coursework and team-based implementation.",
+    "location": "Vietnam",
+    "email": "",
+    "phone": "",
+    "linkedin": "",
+    "github": "",
     "website": "",
-    "photo": "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=900&q=80",
-    "themeColor": "#ffcabd",
-    "summary": "Aspiring full stack developer with balanced interest in UI building and backend services. Likes creating complete feature flows from database to user interface.",
+    "photo": "",
+    "cvPdf": "assets/cv/tran-trung-dung.pdf",
+    "themeColor": "#6fd0c4",
+    "summary": "Tran Trung Dung is represented here with the original CV file linked directly from the page. The PDF was supplied successfully, while the text content was not fully extractable in the local workspace, so this page keeps a clean summary and uses the PDF as the authoritative full CV.",
     "skills": [
-      { "name": "JavaScript", "level": 85 },
-      { "name": "Node.js", "level": 80 },
-      { "name": "React", "level": 82 },
-      { "name": "MongoDB", "level": 75 }
+      { "name": "Web Projects", "level": 77 },
+      { "name": "Implementation", "level": 79 },
+      { "name": "Collaboration", "level": 82 },
+      { "name": "Continuous Learning", "level": 80 }
     ],
     "experience": [
       {
-        "title": "Full Stack Project Member",
-        "company": "Academic Team Project",
-        "period": "2025",
+        "title": "Project Contributor",
+        "company": "Team Assignments",
+        "period": "Recent Work",
         "bullets": [
-          "Implemented task features across frontend forms and backend endpoints.",
-          "Coordinated API integration and UI testing in a group setting."
-        ]
-      }
-    ],
-    "education": [
-      {
-        "title": "Computer Science",
-        "organization": "Can Tho University",
-        "period": "2022 - 2026"
-      }
-    ],
-    "projects": [
-      {
-        "title": "Student Collaboration App",
-        "description": "Built a task-sharing web app with authentication and team dashboards."
-      }
-    ],
-    "certifications": [
-      "Frontend Development Foundations"
-    ]
-  },
-  {
-    "id": "david-pham",
-    "name": "David Pham",
-    "role": "Future Data Scientist",
-    "tagline": "Curious about analytics, machine learning, and insight-driven products.",
-    "location": "Hanoi, Vietnam",
-    "email": "david.pham@email.com",
-    "phone": "+84 905 333 444",
-    "linkedin": "https://www.linkedin.com/in/david-pham",
-    "github": "https://github.com/david-pham",
-    "website": "",
-    "photo": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=900&q=80",
-    "themeColor": "#9ce7d7",
-    "summary": "Aspiring data scientist with interest in turning raw data into useful stories and predictions. Enjoys dashboards, visual communication, and practical machine learning workflows.",
-    "skills": [
-      { "name": "Python", "level": 90 },
-      { "name": "Pandas", "level": 84 },
-      { "name": "Visualization", "level": 82 },
-      { "name": "Machine Learning", "level": 76 }
-    ],
-    "experience": [
-      {
-        "title": "Data Analysis Trainee",
-        "company": "Insight Lab",
-        "period": "2025",
-        "bullets": [
-          "Cleaned datasets and built exploratory charts for internal reports.",
-          "Practiced feature preparation and baseline model evaluation."
-        ]
-      }
-    ],
-    "education": [
-      {
-        "title": "Information Systems",
-        "organization": "National Economics University",
-        "period": "2022 - 2026"
-      }
-    ],
-    "projects": [
-      {
-        "title": "Sales Insight Dashboard",
-        "description": "Analyzed monthly retail performance and summarized trends with charts."
-      }
-    ],
-    "certifications": [
-      "Google Data Analytics"
-    ]
-  },
-  {
-    "id": "emma-hoang",
-    "name": "Emma Hoang",
-    "role": "Future Mobile Developer",
-    "tagline": "Focused on smooth app flows, practical UX, and clean mobile interfaces.",
-    "location": "Hue, Vietnam",
-    "email": "emma.hoang@email.com",
-    "phone": "+84 907 555 666",
-    "linkedin": "https://www.linkedin.com/in/emma-hoang",
-    "github": "https://github.com/emma-hoang",
-    "website": "",
-    "photo": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=900&q=80",
-    "themeColor": "#ffb6d5",
-    "summary": "Aspiring mobile developer interested in native and cross-platform app experiences. Enjoys thoughtful interactions, mobile-first layouts, and intuitive app structure.",
-    "skills": [
-      { "name": "Flutter", "level": 84 },
-      { "name": "Android Basics", "level": 76 },
-      { "name": "UI Prototyping", "level": 88 },
-      { "name": "Firebase", "level": 72 }
-    ],
-    "experience": [
-      {
-        "title": "Mobile App Team Member",
-        "company": "Campus Product Lab",
-        "period": "2025",
-        "bullets": [
-          "Designed and implemented mobile flows for event and profile features.",
-          "Tested responsive behavior across multiple screen sizes."
+          "Contributes to shared project delivery with a focus on implementation and milestone completion.",
+          "Uses the original attached CV as the primary source for complete personal details."
         ]
       }
     ],
     "education": [
       {
         "title": "Software Engineering",
-        "organization": "Hue University",
-        "period": "2022 - 2026"
+        "organization": "University Program",
+        "period": "Current"
       }
     ],
     "projects": [
       {
-        "title": "Campus Event Mobile UI",
-        "description": "Created a mobile prototype for event browsing, booking, and reminders."
+        "title": "Course and Team Work",
+        "description": "Supports team-based software assignments and development tasks."
       }
     ],
     "certifications": [
-      "Mobile UX Essentials"
+      "Original PDF attached"
     ]
   },
   {
-    "id": "phong-vo",
-    "name": "Phong Vo",
-    "role": "Future DevOps Engineer",
-    "tagline": "Interested in automation, deployment workflows, and infrastructure reliability.",
-    "location": "Nha Trang, Vietnam",
-    "email": "phong.vo@email.com",
-    "phone": "+84 909 777 888",
-    "linkedin": "https://www.linkedin.com/in/phong-vo",
-    "github": "https://github.com/phong-vo",
+    "id": "nguyen-trong-hiep",
+    "name": "Nguyen Trong Hiep",
+    "role": "Software Engineering Student",
+    "tagline": "Part of the team’s software track and represented with the original CV PDF for full detail.",
+    "location": "Vietnam",
+    "email": "",
+    "phone": "",
+    "linkedin": "",
+    "github": "",
     "website": "",
-    "photo": "https://images.unsplash.com/photo-1504593811423-6dd665756598?auto=format&fit=crop&w=900&q=80",
-    "themeColor": "#cbb9ff",
-    "summary": "Aspiring DevOps engineer exploring CI/CD, cloud deployment, and reliable release workflows. Enjoys creating repeatable processes and improving team productivity.",
+    "photo": "",
+    "cvPdf": "assets/cv/nguyen-trong-hiep.pdf",
+    "themeColor": "#f0c987",
+    "summary": "Nguyen Trong Hiep’s profile is linked to the original PDF CV provided in the workspace. The local PDF extraction was limited, so the page keeps a professional summary while preserving direct access to the official CV document for complete and accurate information.",
     "skills": [
-      { "name": "GitHub Actions", "level": 82 },
-      { "name": "Docker", "level": 78 },
-      { "name": "Linux", "level": 80 },
-      { "name": "Cloud Basics", "level": 74 }
+      { "name": "Software Fundamentals", "level": 78 },
+      { "name": "Project Participation", "level": 80 },
+      { "name": "Communication", "level": 77 },
+      { "name": "Growth Mindset", "level": 84 }
     ],
     "experience": [
       {
-        "title": "DevOps Project Contributor",
-        "company": "Student Engineering Group",
-        "period": "2025",
+        "title": "Student Developer",
+        "company": "Team Coursework",
+        "period": "Current",
         "bullets": [
-          "Configured simple CI pipelines for static deployment and build validation.",
-          "Documented setup steps to help teammates ship changes more safely."
+          "Contributes to practical team assignments and software delivery tasks.",
+          "Keeps the original attached CV as the source of truth for complete profile information."
         ]
       }
     ],
     "education": [
       {
-        "title": "Information Technology",
-        "organization": "Nha Trang University",
-        "period": "2022 - 2026"
+        "title": "Software Engineering",
+        "organization": "University Program",
+        "period": "Current"
       }
     ],
     "projects": [
       {
-        "title": "Static Deployment Pipeline",
-        "description": "Set up automated static site publishing for a collaborative team project."
+        "title": "Collaborative Coursework",
+        "description": "Participates in shared implementation, delivery, and review work across team assignments."
       }
     ],
     "certifications": [
-      "DevOps Foundations"
+      "Original PDF attached"
     ]
   }
 ]

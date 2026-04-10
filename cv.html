@@ -84,6 +84,10 @@
             backdrop-filter: blur(12px);
         }
 
+        .toolbar-button {
+            cursor: pointer;
+        }
+
         .cv-paper {
             background: var(--surface);
             border: 1px solid rgba(255, 255, 255, 0.55);
@@ -337,7 +341,7 @@
         const themeToggle = document.getElementById("themeToggle");
         const downloadPdfButton = document.getElementById("downloadPdf");
         const params = new URLSearchParams(window.location.search);
-        const memberId = params.get("id") || "alice-nguyen";
+        const memberId = params.get("id") || "tran-quang-hieu";
         let currentMember = null;
 
         async function loadCv() {
@@ -362,19 +366,31 @@
         }
 
         function renderCv(member) {
+            const contactItems = [
+                member.email ? `<div class="contact-item"><i class="bi bi-envelope-fill"></i><div><strong>Email</strong><div>${member.email}</div></div></div>` : "",
+                member.phone ? `<div class="contact-item"><i class="bi bi-telephone-fill"></i><div><strong>Phone</strong><div>${member.phone}</div></div></div>` : "",
+                member.location ? `<div class="contact-item"><i class="bi bi-geo-alt-fill"></i><div><strong>Location</strong><div>${member.location}</div></div></div>` : "",
+                member.tagline ? `<div class="contact-item"><i class="bi bi-lightbulb-fill"></i><div><strong>Focus</strong><div>${member.tagline}</div></div></div>` : ""
+            ].filter(Boolean).join("");
+
+            const externalLinks = [
+                member.linkedin ? `<a class="external-link" href="${member.linkedin}" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin"></i><span>LinkedIn</span></a>` : "",
+                member.github ? `<a class="external-link" href="${member.github}" target="_blank" rel="noopener noreferrer"><i class="bi bi-github"></i><span>GitHub</span></a>` : "",
+                member.website ? `<a class="external-link" href="${member.website}" target="_blank" rel="noopener noreferrer"><i class="bi bi-globe2"></i><span>Portfolio</span></a>` : "",
+                member.cvPdf ? `<a class="external-link" href="${member.cvPdf}" target="_blank" rel="noopener noreferrer"><i class="bi bi-file-earmark-pdf-fill"></i><span>Open Original PDF</span></a>` : "",
+                member.cvPdf ? `<a class="external-link" href="${member.cvPdf}" download><i class="bi bi-download"></i><span>Download Original CV</span></a>` : ""
+            ].filter(Boolean).join("");
+
             cvRoot.innerHTML = `
                 <header class="cv-header">
                     <div class="portrait-wrap">
-                        <img src="${member.photo}" alt="${member.name}">
+                        <img src="${getAvatarSrc(member)}" alt="${member.name}">
                     </div>
                     <div>
                         <h1 class="name">${member.name}</h1>
                         <p class="role">${member.role}</p>
                         <div class="contact-grid">
-                            <div class="contact-item"><i class="bi bi-envelope-fill"></i><div><strong>Email</strong><div>${member.email}</div></div></div>
-                            <div class="contact-item"><i class="bi bi-telephone-fill"></i><div><strong>Phone</strong><div>${member.phone}</div></div></div>
-                            <div class="contact-item"><i class="bi bi-geo-alt-fill"></i><div><strong>Location</strong><div>${member.location}</div></div></div>
-                            <div class="contact-item"><i class="bi bi-lightbulb-fill"></i><div><strong>Focus</strong><div>${member.tagline}</div></div></div>
+                            ${contactItems}
                         </div>
                     </div>
                 </header>
@@ -404,9 +420,7 @@
                         <section class="panel">
                             <h2 class="panel-title">Links</h2>
                             <div class="link-list">
-                                ${member.linkedin ? `<a class="external-link" href="${member.linkedin}" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin"></i><span>LinkedIn</span></a>` : ""}
-                                ${member.github ? `<a class="external-link" href="${member.github}" target="_blank" rel="noopener noreferrer"><i class="bi bi-github"></i><span>GitHub</span></a>` : ""}
-                                ${member.website ? `<a class="external-link" href="${member.website}" target="_blank" rel="noopener noreferrer"><i class="bi bi-globe2"></i><span>Portfolio</span></a>` : ""}
+                                ${externalLinks}
                             </div>
                         </section>
                     </aside>
@@ -545,6 +559,36 @@
             });
 
             doc.save(`${currentMember.id}-cv.pdf`);
+        }
+
+        function getInitials(name) {
+            return name
+                .split(/\s+/)
+                .filter(Boolean)
+                .slice(0, 2)
+                .map(part => part[0].toUpperCase())
+                .join("");
+        }
+
+        function getAvatarSrc(member) {
+            if (member.photo) {
+                return member.photo;
+            }
+
+            const initials = getInitials(member.name);
+            const svg = `
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320">
+                    <defs>
+                        <linearGradient id="avatarGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="${member.themeColor || "#d8b77c"}" />
+                            <stop offset="100%" stop-color="#1c2332" />
+                        </linearGradient>
+                    </defs>
+                    <rect width="320" height="320" rx="44" fill="url(#avatarGradient)" />
+                    <text x="50%" y="55%" text-anchor="middle" font-family="Manrope, Arial, sans-serif" font-size="112" font-weight="800" fill="#fff5e7">${initials}</text>
+                </svg>
+            `;
+            return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
         }
 
         themeToggle.addEventListener("click", toggleTheme);
