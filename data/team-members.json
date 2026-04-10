@@ -4,53 +4,179 @@
     "name": "Tran Quang Hieu",
     "role": "Software Engineering Student",
     "tagline": "Strong in practical web development and steady project execution.",
+    "themeColor": "#d8b77c",
     "photo": "",
     "cvPdf": "assets/cv/tran-quang-hieu.pdf",
-    "themeColor": "#d8b77c"
+    "email": "",
+    "phone": "",
+    "location": "",
+    "summary": "Software engineering student who enjoys building clean, reliable web experiences and turning ideas into polished team deliverables.",
+    "strengths": [
+      "Responsive web interfaces",
+      "Frontend implementation",
+      "Team collaboration"
+    ],
+    "skills": [
+      { "name": "HTML & CSS", "level": 89 },
+      { "name": "JavaScript", "level": 82 },
+      { "name": "UI Implementation", "level": 84 }
+    ],
+    "highlights": [
+      "Contributes practical web solutions with careful attention to detail.",
+      "Works steadily within team projects and delivery timelines.",
+      "Focuses on readable structure and dependable implementation."
+    ],
+    "links": []
   },
   {
     "id": "dang-tuan-dat",
     "name": "Dang Tuan Dat",
     "role": "Software Engineering Student",
     "tagline": "Strong in backend systems, Spring Boot, and API design.",
+    "themeColor": "#8fb8ff",
     "photo": "",
     "cvPdf": "assets/cv/dang-tuan-dat.pdf",
-    "themeColor": "#8fb8ff"
+    "email": "2imdanton139@gmail.com",
+    "phone": "0866522315",
+    "location": "Ha Noi, Vietnam",
+    "summary": "Backend-oriented software engineering student with hands-on interest in Spring Boot, RESTful APIs, and structured database-driven applications.",
+    "strengths": [
+      "Backend architecture",
+      "Spring Boot",
+      "REST API development"
+    ],
+    "skills": [
+      { "name": "Java", "level": 88 },
+      { "name": "Spring Boot", "level": 86 },
+      { "name": "MySQL", "level": 80 }
+    ],
+    "highlights": [
+      "Builds backend services with a strong emphasis on structure and maintainability.",
+      "Comfortable working with API flows and database integration.",
+      "Interested in improving system thinking through real project practice."
+    ],
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/datdt69",
+        "icon": "bi-github"
+      }
+    ]
   },
   {
     "id": "pham-tuan-kiet",
     "name": "Pham Tuan Kiet",
     "role": "Software Engineering Student",
     "tagline": "Strong in research, organization, and technical foundations.",
+    "themeColor": "#ffb48c",
     "photo": "",
     "cvPdf": "assets/cv/pham-tuan-kiet.pdf",
-    "themeColor": "#ffb48c"
+    "email": "le2844018@gmail.com",
+    "phone": "0337737583",
+    "location": "",
+    "summary": "Software engineering student with an organized working style, curiosity for technical learning, and a solid focus on growing through academic and project experience.",
+    "strengths": [
+      "Structured learning",
+      "Technical research",
+      "Academic discipline"
+    ],
+    "skills": [
+      { "name": "Problem Solving", "level": 84 },
+      { "name": "Technical Research", "level": 80 },
+      { "name": "Project Support", "level": 78 }
+    ],
+    "highlights": [
+      "Approaches technical work with careful preparation and clear organization.",
+      "Builds strong fundamentals through coursework and steady self-improvement.",
+      "Supports team progress with thoughtful and dependable contributions."
+    ],
+    "links": []
   },
   {
     "id": "tran-trung-dung",
     "name": "Tran Trung Dung",
     "role": "Software Engineering Student",
     "tagline": "Strong in implementation work and dependable team contribution.",
+    "themeColor": "#6fd0c4",
     "photo": "",
     "cvPdf": "assets/cv/tran-trung-dung.pdf",
-    "themeColor": "#6fd0c4"
+    "email": "",
+    "phone": "",
+    "location": "",
+    "summary": "Implementation-focused software engineering student who values reliable execution, stable delivery, and strong support inside collaborative development work.",
+    "strengths": [
+      "Feature implementation",
+      "Reliable execution",
+      "Delivery support"
+    ],
+    "skills": [
+      { "name": "Implementation", "level": 85 },
+      { "name": "Team Delivery", "level": 83 },
+      { "name": "Web Development", "level": 79 }
+    ],
+    "highlights": [
+      "Helps move team work forward with practical implementation effort.",
+      "Balances speed with consistency across assigned tasks.",
+      "Brings dependable support to collaborative project delivery."
+    ],
+    "links": []
   },
   {
     "id": "nguyen-trong-hiep",
     "name": "Nguyen Trong Hiep",
     "role": "Software Engineering Student",
     "tagline": "Strong in collaborative teamwork and consistent project support.",
+    "themeColor": "#f0c987",
     "photo": "",
     "cvPdf": "assets/cv/nguyen-trong-hiep.pdf",
-    "themeColor": "#f0c987"
+    "email": "",
+    "phone": "",
+    "location": "",
+    "summary": "Software engineering student who brings a collaborative mindset, dependable support, and a practical approach to shared project work.",
+    "strengths": [
+      "Team collaboration",
+      "Project coordination",
+      "Consistent support"
+    ],
+    "skills": [
+      { "name": "Collaboration", "level": 87 },
+      { "name": "Project Support", "level": 84 },
+      { "name": "Web Fundamentals", "level": 78 }
+    ],
+    "highlights": [
+      "Works well inside team environments and shared workflows.",
+      "Supports progress with consistency and steady follow-through.",
+      "Values clear communication and reliable contribution."
+    ],
+    "links": []
   },
   {
     "id": "doan-dinh-diap",
     "name": "Doan Dinh Diap",
     "role": "Software Engineering Student",
     "tagline": "Strong in adaptability, learning mindset, and team collaboration.",
+    "themeColor": "#d6c4ff",
     "photo": "",
     "cvPdf": "assets/cv/member-cv.pdf",
-    "themeColor": "#d6c4ff"
+    "email": "",
+    "phone": "",
+    "location": "",
+    "summary": "Adaptive software engineering student with a positive learning mindset and a strong willingness to contribute in collaborative project settings.",
+    "strengths": [
+      "Adaptability",
+      "Continuous learning",
+      "Collaborative work"
+    ],
+    "skills": [
+      { "name": "Learning Agility", "level": 88 },
+      { "name": "Team Collaboration", "level": 82 },
+      { "name": "Implementation Support", "level": 77 }
+    ],
+    "highlights": [
+      "Learns quickly and adjusts well to new tasks or project needs.",
+      "Brings a supportive attitude to team-based delivery.",
+      "Focuses on growth through hands-on contribution and practice."
+    ],
+    "links": []
   }
 ]
