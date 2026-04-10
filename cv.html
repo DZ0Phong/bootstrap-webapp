@@ -4,21 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Member CV</title>
+    <title>CV Viewer</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #f5f0e8;
-            --surface: rgba(255, 252, 247, 0.94);
-            --surface-soft: #f4ede1;
-            --text: #201f24;
-            --muted: #71675c;
-            --line: #ddd1c0;
-            --accent: #7a5b2f;
-            --accent-soft: rgba(122, 91, 47, 0.1);
-            --shadow: 0 26px 60px rgba(54, 40, 22, 0.1);
+            --text: #f6f1e8;
+            --muted: rgba(233, 225, 211, 0.78);
+            --surface: rgba(16, 22, 34, 0.78);
+            --line: rgba(209, 189, 151, 0.2);
+            --gold: #f1d39a;
+            --shadow: 0 30px 60px rgba(2, 6, 23, 0.3);
+        }
+
+        * {
+            box-sizing: border-box;
         }
 
         body {
@@ -27,38 +28,23 @@
             font-family: 'Manrope', sans-serif;
             color: var(--text);
             background:
-                radial-gradient(circle at top left, rgba(122, 91, 47, 0.12), transparent 18%),
-                linear-gradient(180deg, #fcfaf7 0%, var(--bg) 100%);
-            transition: background 0.3s ease, color 0.3s ease;
-        }
-
-        body.dark {
-            --bg: #10141c;
-            --surface: rgba(18, 22, 31, 0.94);
-            --surface-soft: #171d29;
-            --text: #f3ede2;
-            --muted: #b9aa96;
-            --line: rgba(206, 184, 153, 0.18);
-            --accent: #d6bc8d;
-            --accent-soft: rgba(214, 188, 141, 0.14);
-            --shadow: 0 26px 60px rgba(0, 0, 0, 0.34);
-            background:
-                radial-gradient(circle at top left, rgba(214, 188, 141, 0.09), transparent 20%),
-                linear-gradient(180deg, #0a0d14 0%, var(--bg) 100%);
+                radial-gradient(circle at 15% 18%, rgba(220, 192, 138, 0.14), transparent 16%),
+                radial-gradient(circle at 78% 12%, rgba(118, 88, 56, 0.18), transparent 18%),
+                linear-gradient(135deg, #090d16 0%, #111827 45%, #1b2232 100%);
         }
 
         .page-shell {
-            max-width: 1200px;
+            max-width: 1320px;
             margin: 0 auto;
-            padding: 28px 18px 56px;
+            padding: 28px 20px 40px;
         }
 
         .toolbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 14px;
-            margin-bottom: 18px;
+            gap: 16px;
+            margin-bottom: 22px;
             flex-wrap: wrap;
         }
 
@@ -76,238 +62,64 @@
             padding: 12px 16px;
             border-radius: 999px;
             border: 1px solid var(--line);
-            background: var(--surface);
+            background: rgba(17, 22, 34, 0.58);
             color: var(--text);
             text-decoration: none;
             font-weight: 700;
             box-shadow: var(--shadow);
-            backdrop-filter: blur(12px);
+            backdrop-filter: blur(14px);
         }
 
-        .toolbar-button {
-            cursor: pointer;
-        }
-
-        .cv-paper {
-            background: var(--surface);
-            border: 1px solid rgba(255, 255, 255, 0.55);
+        .viewer-card {
             border-radius: 32px;
-            padding: 34px;
-            box-shadow: var(--shadow);
-        }
-
-        .cv-header {
-            display: grid;
-            grid-template-columns: 280px minmax(0, 1fr);
-            gap: 24px;
-            align-items: center;
-            border-bottom: 1px solid var(--line);
-            padding-bottom: 24px;
-            margin-bottom: 24px;
-        }
-
-        .portrait-wrap img {
-            width: 100%;
-            aspect-ratio: 1 / 1;
-            object-fit: cover;
-            border-radius: 28px;
-            box-shadow: var(--shadow);
-        }
-
-        .name {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(2.8rem, 6vw, 4.8rem);
-            color: var(--accent);
-            margin: 0;
-            line-height: 0.95;
-            letter-spacing: 0.01em;
-        }
-
-        .role {
-            font-size: 1.6rem;
-            color: var(--muted);
-            font-weight: 500;
-            margin: 12px 0 22px;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 12px;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            padding: 12px 14px;
-            border-radius: 18px;
-            background: var(--surface-soft);
-        }
-
-        .contact-item i {
-            color: var(--accent);
-        }
-
-        .cv-layout {
-            display: grid;
-            grid-template-columns: 280px minmax(0, 1fr);
-            gap: 24px;
-        }
-
-        .side-stack,
-        .main-stack {
-            display: grid;
-            gap: 20px;
-        }
-
-        .panel {
-            padding: 22px;
-            border-radius: 24px;
-            background: var(--surface-soft);
             border: 1px solid var(--line);
-        }
-
-        .panel-title {
-            font-size: 1.45rem;
-            font-weight: 800;
-            margin: 0 0 16px;
-            color: var(--accent);
-            border-bottom: 1px solid var(--line);
-            padding-bottom: 10px;
-            font-family: 'Cormorant Garamond', serif;
-            letter-spacing: 0.01em;
-        }
-
-        .summary-text {
-            color: var(--text);
-            line-height: 1.8;
-            margin: 0;
-        }
-
-        .skill-item + .skill-item {
-            margin-top: 16px;
-        }
-
-        .skill-row {
-            display: flex;
-            justify-content: space-between;
-            gap: 10px;
-            margin-bottom: 8px;
-            font-weight: 700;
-        }
-
-        .progress {
-            height: 12px;
-            background: rgba(148, 163, 184, 0.18);
-            border-radius: 999px;
+            background: var(--surface);
+            box-shadow: var(--shadow);
             overflow: hidden;
         }
 
-        .progress-bar {
-            background: linear-gradient(90deg, var(--accent), #d5b784);
+        .viewer-head {
+            padding: 28px 28px 20px;
+            border-bottom: 1px solid var(--line);
         }
 
-        .timeline-item + .timeline-item {
-            margin-top: 18px;
-            padding-top: 18px;
-            border-top: 1px solid var(--line);
-        }
-
-        .item-head {
-            display: flex;
-            justify-content: space-between;
-            gap: 16px;
-            margin-bottom: 6px;
-            flex-wrap: wrap;
-        }
-
-        .item-title {
-            font-size: 1.1rem;
-            font-weight: 800;
+        .viewer-title {
             margin: 0;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.4rem, 5vw, 4.2rem);
+            color: var(--gold);
         }
 
-        .item-subtitle {
+        .viewer-copy {
+            margin: 10px 0 0;
             color: var(--muted);
-            font-weight: 600;
-            margin: 0 0 8px;
-        }
-
-        .item-period {
-            color: var(--muted);
-            font-weight: 700;
-        }
-
-        .bullet-list,
-        .simple-list {
-            margin: 0;
-            padding-left: 18px;
-            color: var(--text);
-        }
-
-        .bullet-list li,
-        .simple-list li {
             line-height: 1.7;
-            margin-bottom: 6px;
+            max-width: 760px;
         }
 
-        .link-list {
-            display: grid;
-            gap: 12px;
-        }
-
-        .external-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 14px;
-            border-radius: 16px;
-            background: var(--surface-soft);
-            border: 1px solid var(--line);
-            color: var(--text);
-            text-decoration: none;
-            font-weight: 700;
-        }
-
-        .external-link i {
-            color: var(--accent);
+        .pdf-frame {
+            width: 100%;
+            height: min(78vh, 980px);
+            border: 0;
+            background: white;
         }
 
         .empty-state {
+            padding: 80px 24px;
             text-align: center;
-            padding: 72px 24px;
-        }
-
-        @media print {
-            body {
-                background: white !important;
-            }
-
-            .toolbar {
-                display: none !important;
-            }
-
-            .cv-paper {
-                box-shadow: none;
-                border-radius: 0;
-                border: 0;
-                padding: 0;
-            }
-        }
-
-        @media (max-width: 900px) {
-            .cv-header,
-            .cv-layout,
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
         }
 
         @media (max-width: 768px) {
-            .cv-paper {
-                padding: 22px;
-                border-radius: 24px;
+            .page-shell {
+                padding: 20px 14px 30px;
+            }
+
+            .viewer-head {
+                padding: 22px 20px 18px;
+            }
+
+            .pdf-frame {
+                height: 72vh;
             }
         }
     </style>
@@ -321,281 +133,58 @@
                 <a class="toolbar-link" href="index.html"><i class="bi bi-grid"></i>Dashboard</a>
             </div>
             <div class="toolbar-group">
-                <button class="toolbar-button" id="themeToggle" type="button"><i class="bi bi-moon-stars-fill"></i><span>Dark Mode</span></button>
-                <button class="toolbar-button" id="downloadPdf" type="button"><i class="bi bi-download"></i><span>Download PDF</span></button>
+                <a class="toolbar-button" id="openPdfButton" href="#" target="_blank" rel="noopener noreferrer"><i class="bi bi-box-arrow-up-right"></i><span>Open PDF</span></a>
+                <a class="toolbar-button" id="downloadPdfButton" href="#" download><i class="bi bi-download"></i><span>Download PDF</span></a>
             </div>
         </div>
 
-        <main class="cv-paper" id="cvRoot">
-            <div class="empty-state" id="loadingState">
+        <main class="viewer-card" id="viewerRoot">
+            <div class="empty-state">
                 <h1 class="fw-bold">Loading CV...</h1>
-                <p class="text-muted mb-0">Please wait while the profile data is being prepared.</p>
+                <p class="mb-0 text-white-50">Please wait while the PDF viewer is prepared.</p>
             </div>
         </main>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
         const DATA_URL = "data/team-members.json";
-        const cvRoot = document.getElementById("cvRoot");
-        const themeToggle = document.getElementById("themeToggle");
-        const downloadPdfButton = document.getElementById("downloadPdf");
+        const viewerRoot = document.getElementById("viewerRoot");
+        const openPdfButton = document.getElementById("openPdfButton");
+        const downloadPdfButton = document.getElementById("downloadPdfButton");
         const params = new URLSearchParams(window.location.search);
         const memberId = params.get("id") || "tran-quang-hieu";
-        let currentMember = null;
 
-        async function loadCv() {
+        async function loadViewer() {
             try {
                 const response = await fetch(DATA_URL);
                 if (!response.ok) {
-                    throw new Error("Failed to fetch CV data");
+                    throw new Error("Failed to load team data");
                 }
 
                 const members = await response.json();
-                currentMember = members.find(member => member.id === memberId) || members[0];
-                document.title = `${currentMember.name} - CV`;
-                renderCv(currentMember);
+                const member = members.find(item => item.id === memberId) || members[0];
+                document.title = `${member.name} - CV Viewer`;
+                openPdfButton.href = member.cvPdf;
+                downloadPdfButton.href = member.cvPdf;
+
+                viewerRoot.innerHTML = `
+                    <section class="viewer-head">
+                        <h1 class="viewer-title">${member.name}</h1>
+                        <p class="viewer-copy">This page keeps the experience simple and clean: you can go back to the team page, open the original PDF in a separate tab, or download it directly.</p>
+                    </section>
+                    <iframe class="pdf-frame" src="${member.cvPdf}" title="${member.name} PDF CV"></iframe>
+                `;
             } catch (error) {
-                cvRoot.innerHTML = `
+                viewerRoot.innerHTML = `
                     <div class="empty-state">
-                        <h1 class="fw-bold">Unable to load CV</h1>
-                        <p class="text-muted mb-0">Please check the data file and try again.</p>
+                        <h1 class="fw-bold">Unable to load PDF viewer</h1>
+                        <p class="mb-0 text-white-50">Please check the JSON file and PDF paths.</p>
                     </div>
                 `;
             }
         }
 
-        function renderCv(member) {
-            const contactItems = [
-                member.email ? `<div class="contact-item"><i class="bi bi-envelope-fill"></i><div><strong>Email</strong><div>${member.email}</div></div></div>` : "",
-                member.phone ? `<div class="contact-item"><i class="bi bi-telephone-fill"></i><div><strong>Phone</strong><div>${member.phone}</div></div></div>` : "",
-                member.location ? `<div class="contact-item"><i class="bi bi-geo-alt-fill"></i><div><strong>Location</strong><div>${member.location}</div></div></div>` : "",
-                member.tagline ? `<div class="contact-item"><i class="bi bi-lightbulb-fill"></i><div><strong>Focus</strong><div>${member.tagline}</div></div></div>` : ""
-            ].filter(Boolean).join("");
-
-            const externalLinks = [
-                member.linkedin ? `<a class="external-link" href="${member.linkedin}" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin"></i><span>LinkedIn</span></a>` : "",
-                member.github ? `<a class="external-link" href="${member.github}" target="_blank" rel="noopener noreferrer"><i class="bi bi-github"></i><span>GitHub</span></a>` : "",
-                member.website ? `<a class="external-link" href="${member.website}" target="_blank" rel="noopener noreferrer"><i class="bi bi-globe2"></i><span>Portfolio</span></a>` : "",
-                member.cvPdf ? `<a class="external-link" href="${member.cvPdf}" target="_blank" rel="noopener noreferrer"><i class="bi bi-file-earmark-pdf-fill"></i><span>Open Original PDF</span></a>` : "",
-                member.cvPdf ? `<a class="external-link" href="${member.cvPdf}" download><i class="bi bi-download"></i><span>Download Original CV</span></a>` : ""
-            ].filter(Boolean).join("");
-
-            cvRoot.innerHTML = `
-                <header class="cv-header">
-                    <div class="portrait-wrap">
-                        <img src="${getAvatarSrc(member)}" alt="${member.name}">
-                    </div>
-                    <div>
-                        <h1 class="name">${member.name}</h1>
-                        <p class="role">${member.role}</p>
-                        <div class="contact-grid">
-                            ${contactItems}
-                        </div>
-                    </div>
-                </header>
-
-                <div class="cv-layout">
-                    <aside class="side-stack">
-                        <section class="panel">
-                            <h2 class="panel-title">Profile</h2>
-                            <p class="summary-text">${member.summary}</p>
-                        </section>
-
-                        <section class="panel">
-                            <h2 class="panel-title">Skills</h2>
-                            ${member.skills.map(skill => `
-                                <div class="skill-item">
-                                    <div class="skill-row">
-                                        <span>${skill.name}</span>
-                                        <span>${skill.level}%</span>
-                                    </div>
-                                    <div class="progress" role="progressbar" aria-label="${skill.name} proficiency" aria-valuenow="${skill.level}" aria-valuemin="0" aria-valuemax="100">
-                                        <div class="progress-bar" style="width:${skill.level}%"></div>
-                                    </div>
-                                </div>
-                            `).join("")}
-                        </section>
-
-                        <section class="panel">
-                            <h2 class="panel-title">Links</h2>
-                            <div class="link-list">
-                                ${externalLinks}
-                            </div>
-                        </section>
-                    </aside>
-
-                    <section class="main-stack">
-                        <section class="panel">
-                            <h2 class="panel-title">Experience</h2>
-                            ${member.experience.map(item => `
-                                <article class="timeline-item">
-                                    <div class="item-head">
-                                        <div>
-                                            <h3 class="item-title">${item.title}</h3>
-                                            <p class="item-subtitle">${item.company}</p>
-                                        </div>
-                                        <div class="item-period">${item.period}</div>
-                                    </div>
-                                    <ul class="bullet-list">
-                                        ${item.bullets.map(bullet => `<li>${bullet}</li>`).join("")}
-                                    </ul>
-                                </article>
-                            `).join("")}
-                        </section>
-
-                        <section class="panel">
-                            <h2 class="panel-title">Education</h2>
-                            ${member.education.map(item => `
-                                <article class="timeline-item">
-                                    <div class="item-head">
-                                        <div>
-                                            <h3 class="item-title">${item.title}</h3>
-                                            <p class="item-subtitle">${item.organization}</p>
-                                        </div>
-                                        <div class="item-period">${item.period}</div>
-                                    </div>
-                                </article>
-                            `).join("")}
-                        </section>
-
-                        <section class="panel">
-                            <h2 class="panel-title">Projects</h2>
-                            ${member.projects.map(item => `
-                                <article class="timeline-item">
-                                    <h3 class="item-title">${item.title}</h3>
-                                    <p class="summary-text">${item.description}</p>
-                                </article>
-                            `).join("")}
-                        </section>
-
-                        <section class="panel">
-                            <h2 class="panel-title">Certifications</h2>
-                            <ul class="simple-list">
-                                ${member.certifications.map(item => `<li>${item}</li>`).join("")}
-                            </ul>
-                        </section>
-                    </section>
-                </div>
-            `;
-        }
-
-        function toggleTheme() {
-            document.body.classList.toggle("dark");
-            const isDark = document.body.classList.contains("dark");
-            localStorage.setItem("cv-theme", isDark ? "dark" : "light");
-            themeToggle.innerHTML = isDark
-                ? `<i class="bi bi-brightness-high-fill"></i><span>Light Mode</span>`
-                : `<i class="bi bi-moon-stars-fill"></i><span>Dark Mode</span>`;
-        }
-
-        function applySavedTheme() {
-            const savedTheme = localStorage.getItem("cv-theme");
-            if (savedTheme === "dark") {
-                document.body.classList.add("dark");
-                themeToggle.innerHTML = `<i class="bi bi-brightness-high-fill"></i><span>Light Mode</span>`;
-            }
-        }
-
-        function downloadPdf() {
-            if (!currentMember || !window.jspdf) {
-                window.print();
-                return;
-            }
-
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
-            let y = 20;
-
-            doc.setFont("helvetica", "bold");
-            doc.setFontSize(22);
-            doc.text(currentMember.name, 20, y);
-            y += 10;
-            doc.setFont("helvetica", "normal");
-            doc.setFontSize(12);
-            doc.text(currentMember.role, 20, y);
-            y += 10;
-            doc.text(`Email: ${currentMember.email}`, 20, y);
-            y += 7;
-            doc.text(`Phone: ${currentMember.phone}`, 20, y);
-            y += 7;
-            doc.text(`Location: ${currentMember.location}`, 20, y);
-            y += 12;
-
-            doc.setFont("helvetica", "bold");
-            doc.text("Profile", 20, y);
-            y += 8;
-            doc.setFont("helvetica", "normal");
-            const profileLines = doc.splitTextToSize(currentMember.summary, 170);
-            doc.text(profileLines, 20, y);
-            y += profileLines.length * 6 + 6;
-
-            doc.setFont("helvetica", "bold");
-            doc.text("Skills", 20, y);
-            y += 8;
-            doc.setFont("helvetica", "normal");
-            currentMember.skills.forEach(skill => {
-                doc.text(`${skill.name}: ${skill.level}%`, 20, y);
-                y += 6;
-            });
-            y += 4;
-
-            doc.setFont("helvetica", "bold");
-            doc.text("Experience", 20, y);
-            y += 8;
-            currentMember.experience.forEach(item => {
-                doc.setFont("helvetica", "bold");
-                doc.text(`${item.title} - ${item.company}`, 20, y);
-                y += 6;
-                doc.setFont("helvetica", "normal");
-                doc.text(item.period, 20, y);
-                y += 6;
-                item.bullets.forEach(bullet => {
-                    const lines = doc.splitTextToSize(`- ${bullet}`, 170);
-                    doc.text(lines, 24, y);
-                    y += lines.length * 6;
-                });
-                y += 4;
-            });
-
-            doc.save(`${currentMember.id}-cv.pdf`);
-        }
-
-        function getInitials(name) {
-            return name
-                .split(/\s+/)
-                .filter(Boolean)
-                .slice(0, 2)
-                .map(part => part[0].toUpperCase())
-                .join("");
-        }
-
-        function getAvatarSrc(member) {
-            if (member.photo) {
-                return member.photo;
-            }
-
-            const initials = getInitials(member.name);
-            const svg = `
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320">
-                    <defs>
-                        <linearGradient id="avatarGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="${member.themeColor || "#d8b77c"}" />
-                            <stop offset="100%" stop-color="#1c2332" />
-                        </linearGradient>
-                    </defs>
-                    <rect width="320" height="320" rx="44" fill="url(#avatarGradient)" />
-                    <text x="50%" y="55%" text-anchor="middle" font-family="Manrope, Arial, sans-serif" font-size="112" font-weight="800" fill="#fff5e7">${initials}</text>
-                </svg>
-            `;
-            return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
-        }
-
-        themeToggle.addEventListener("click", toggleTheme);
-        downloadPdfButton.addEventListener("click", downloadPdf);
-
-        applySavedTheme();
-        loadCv();
+        loadViewer();
     </script>
 </body>
 

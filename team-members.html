@@ -443,10 +443,10 @@
 
         <section class="hero">
             <h1 class="hero-title">Meet Our Team</h1>
-            <p class="hero-copy">Browse the team carousel, pause on hover, switch to a full member grid when needed, and click any profile image or name to jump directly into that member's CV page with the original PDF attached.</p>
+            <p class="hero-copy">Browse the team carousel, pause on hover, switch to a full member grid when needed, and click any profile image or name to open that member's original PDF CV in a new tab.</p>
             <div class="hero-actions">
                 <button class="solid-button" type="button" id="playPauseButton"><i class="bi bi-pause-circle-fill"></i><span>Pause Slideshow</span></button>
-                <a class="ghost-button" href="cv.html?id=tran-quang-hieu"><i class="bi bi-person-vcard"></i><span>Open First CV</span></a>
+                <a class="ghost-button" href="assets/cv/tran-quang-hieu.pdf" target="_blank" rel="noopener noreferrer"><i class="bi bi-file-earmark-pdf"></i><span>Open Random CV</span></a>
             </div>
         </section>
 
@@ -512,7 +512,7 @@
         }
 
         function getLink(member) {
-            return `cv.html?id=${encodeURIComponent(member.id)}`;
+            return member.cvPdf;
         }
 
         function getInitials(name) {
@@ -572,7 +572,7 @@
 
                 return `
                     <article class="member-card ${opacityClass}" style="transform:${translate}; z-index:${slot.zIndex}; opacity:${slot.opacity}; filter:${slot.blur};" data-index="${member.id}" data-base-x="${slot.x}" data-scale="${slot.scale}">
-                        <a class="member-link" href="${getLink(member)}">
+                        <a class="member-link" href="${getLink(member)}" target="_blank" rel="noopener noreferrer">
                             <div class="member-avatar" style="box-shadow: 0 22px 50px ${hexToShadow(member.themeColor)};">
                                 <img src="${getAvatarSrc(member)}" alt="${member.name}">
                             </div>
@@ -606,7 +606,7 @@
 
         function renderGrid() {
             gridView.innerHTML = state.members.map(member => `
-                <a class="grid-card fade-in" href="${getLink(member)}">
+                <a class="grid-card fade-in" href="${getLink(member)}" target="_blank" rel="noopener noreferrer">
                     <div class="member-avatar" style="box-shadow: 0 22px 50px ${hexToShadow(member.themeColor)};">
                         <img src="${getAvatarSrc(member)}" alt="${member.name}">
                     </div>

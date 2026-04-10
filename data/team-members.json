@@ -3,312 +3,54 @@
     "id": "tran-quang-hieu",
     "name": "Tran Quang Hieu",
     "role": "Software Engineering Student",
-    "tagline": "Focused on building reliable web products and growing through real project work.",
-    "location": "Vietnam",
-    "email": "",
-    "phone": "",
-    "linkedin": "",
-    "github": "",
-    "website": "",
+    "tagline": "Strong in practical web development and steady project execution.",
     "photo": "",
     "cvPdf": "assets/cv/tran-quang-hieu.pdf",
-    "themeColor": "#d8b77c",
-    "summary": "Tran Quang Hieu is part of the team’s software engineering track and is actively building hands-on project experience. The original PDF CV is attached for the complete profile and detailed background.",
-    "skills": [
-      { "name": "Web Development", "level": 78 },
-      { "name": "Problem Solving", "level": 80 },
-      { "name": "Team Collaboration", "level": 82 },
-      { "name": "Project Delivery", "level": 76 }
-    ],
-    "experience": [
-      {
-        "title": "Academic Project Contributor",
-        "company": "Team Coursework",
-        "period": "Recent Projects",
-        "bullets": [
-          "Contributed to collaborative software projects with a focus on implementation quality and steady delivery.",
-          "Worked in a team environment to complete feature work, testing, and assignment milestones."
-        ]
-      }
-    ],
-    "education": [
-      {
-        "title": "Software Engineering",
-        "organization": "University Program",
-        "period": "Current"
-      }
-    ],
-    "projects": [
-      {
-        "title": "Course Project Work",
-        "description": "Participated in academic web application assignments and group-based implementation tasks."
-      }
-    ],
-    "certifications": [
-      "See original PDF CV for the full profile"
-    ]
+    "themeColor": "#d8b77c"
   },
   {
     "id": "dang-tuan-dat",
     "name": "Dang Tuan Dat",
-    "role": "Backend Developer",
-    "tagline": "Backend-focused builder with Spring Boot, RESTful APIs, and relational database experience.",
-    "location": "Ha Noi, Viet Nam",
-    "email": "2imdanton139@gmail.com",
-    "phone": "0866522315",
-    "linkedin": "",
-    "github": "https://github.com/datdt69",
-    "website": "",
+    "role": "Software Engineering Student",
+    "tagline": "Strong in backend systems, Spring Boot, and API design.",
     "photo": "",
     "cvPdf": "assets/cv/dang-tuan-dat.pdf",
-    "themeColor": "#8fb8ff",
-    "summary": "Fourth-year Software Engineering student at FPT University with a solid grasp of backend development, RESTful API design, and relational databases. Completed a 3-month internship building internal tools with Spring Boot and MySQL, and is looking for a junior backend role to continue growing through production-style systems.",
-    "skills": [
-      { "name": "Java", "level": 90 },
-      { "name": "Spring Boot", "level": 88 },
-      { "name": "RESTful API", "level": 88 },
-      { "name": "MySQL", "level": 84 }
-    ],
-    "experience": [
-      {
-        "title": "Java Backend Developer",
-        "company": "License Marketplace Platform",
-        "period": "Sep 2025 - Nov 2025",
-        "bullets": [
-          "Built marketplace APIs with Spring Boot and Spring Security, including order flow, activation, and role-based access control.",
-          "Designed MySQL data models with JPA/Hibernate and supported secure payment integration."
-        ]
-      },
-      {
-        "title": "Java Backend Developer",
-        "company": "Employee Management System",
-        "period": "May 2025 - Aug 2025",
-        "bullets": [
-          "Developed an employee management web application using Java Servlet, JSP, JDBC, and MySQL.",
-          "Implemented authentication, authorization, employee CRUD, and leave approval workflows."
-        ]
-      }
-    ],
-    "education": [
-      {
-        "title": "Bachelor of Science in Software Engineering",
-        "organization": "FPT University",
-        "period": "Sep 2022 - Jan 2027"
-      }
-    ],
-    "projects": [
-      {
-        "title": "License Marketplace Platform",
-        "description": "Designed backend business logic, role-based access control, and payment-ready API flows."
-      },
-      {
-        "title": "Employee Management",
-        "description": "Implemented MVC-based employee and leave management features with Java web technologies."
-      }
-    ],
-    "certifications": [
-      "IELTS 5.5"
-    ]
-  },
-  {
-    "id": "member-cv",
-    "name": "Member From Provided CV",
-    "role": "Team Member",
-    "tagline": "Original CV is attached and ready to be reviewed from the linked PDF file.",
-    "location": "Vietnam",
-    "email": "",
-    "phone": "",
-    "linkedin": "",
-    "github": "",
-    "website": "",
-    "photo": "",
-    "cvPdf": "assets/cv/member-cv.pdf",
-    "themeColor": "#d6c4ff",
-    "summary": "This member’s original CV file was provided as a PDF without readable text metadata in the current workspace. The profile card and CV page are wired to the attached PDF so the full official document can still be opened and downloaded immediately, and the visible name can be updated as soon as you confirm it.",
-    "skills": [
-      { "name": "Communication", "level": 76 },
-      { "name": "Teamwork", "level": 80 },
-      { "name": "Academic Projects", "level": 78 },
-      { "name": "Learning Agility", "level": 82 }
-    ],
-    "experience": [
-      {
-        "title": "Team Project Contributor",
-        "company": "Coursework Projects",
-        "period": "Current",
-        "bullets": [
-          "Participates in collaborative assignment delivery and feature implementation work.",
-          "Uses the attached CV as the source of truth for complete personal details."
-        ]
-      }
-    ],
-    "education": [
-      {
-        "title": "University Program",
-        "organization": "See original PDF CV",
-        "period": "Current"
-      }
-    ],
-    "projects": [
-      {
-        "title": "Original CV PDF",
-        "description": "Open the linked PDF to review the member’s full background and supporting details."
-      }
-    ],
-    "certifications": [
-      "Original PDF attached"
-    ]
+    "themeColor": "#8fb8ff"
   },
   {
     "id": "pham-tuan-kiet",
     "name": "Pham Tuan Kiet",
-    "role": "Software Engineer Student",
-    "tagline": "FPT University student building a solid foundation in software engineering and project work.",
-    "location": "Ha Noi, Vietnam",
-    "email": "le2844018@gmail.com",
-    "phone": "0337737583",
-    "linkedin": "",
-    "github": "",
-    "website": "",
+    "role": "Software Engineering Student",
+    "tagline": "Strong in research, organization, and technical foundations.",
     "photo": "",
     "cvPdf": "assets/cv/pham-tuan-kiet.pdf",
-    "themeColor": "#ffb48c",
-    "summary": "Pham Tuan Kiet is a software engineering student at FPT University. Based on the supplied CV, the profile highlights a student background, core professional skills, and academic progression from Tran Phu - Hoan Kiem High School to FPT University.",
-    "skills": [
-      { "name": "Technical Skills", "level": 80 },
-      { "name": "Communication", "level": 78 },
-      { "name": "Time Management", "level": 79 },
-      { "name": "Research", "level": 76 }
-    ],
-    "experience": [
-      {
-        "title": "Student Project Experience",
-        "company": "Academic Work",
-        "period": "2022 - Present",
-        "bullets": [
-          "Develops practical experience through coursework, research, and project participation.",
-          "Builds a software engineering foundation while expanding technical and collaboration skills."
-        ]
-      }
-    ],
-    "education": [
-      {
-        "title": "Software Engineering",
-        "organization": "FPT University",
-        "period": "2022 - Now"
-      },
-      {
-        "title": "High School",
-        "organization": "Tran Phu - Hoan Kiem High School",
-        "period": "2019 - 2022"
-      }
-    ],
-    "projects": [
-      {
-        "title": "Academic Portfolio",
-        "description": "Original PDF CV includes the full education, skills, and personal background details."
-      }
-    ],
-    "certifications": [
-      "See original PDF CV for full details"
-    ]
+    "themeColor": "#ffb48c"
   },
   {
     "id": "tran-trung-dung",
     "name": "Tran Trung Dung",
     "role": "Software Engineering Student",
-    "tagline": "Building practical development experience through coursework and team-based implementation.",
-    "location": "Vietnam",
-    "email": "",
-    "phone": "",
-    "linkedin": "",
-    "github": "",
-    "website": "",
+    "tagline": "Strong in implementation work and dependable team contribution.",
     "photo": "",
     "cvPdf": "assets/cv/tran-trung-dung.pdf",
-    "themeColor": "#6fd0c4",
-    "summary": "Tran Trung Dung is represented here with the original CV file linked directly from the page. The PDF was supplied successfully, while the text content was not fully extractable in the local workspace, so this page keeps a clean summary and uses the PDF as the authoritative full CV.",
-    "skills": [
-      { "name": "Web Projects", "level": 77 },
-      { "name": "Implementation", "level": 79 },
-      { "name": "Collaboration", "level": 82 },
-      { "name": "Continuous Learning", "level": 80 }
-    ],
-    "experience": [
-      {
-        "title": "Project Contributor",
-        "company": "Team Assignments",
-        "period": "Recent Work",
-        "bullets": [
-          "Contributes to shared project delivery with a focus on implementation and milestone completion.",
-          "Uses the original attached CV as the primary source for complete personal details."
-        ]
-      }
-    ],
-    "education": [
-      {
-        "title": "Software Engineering",
-        "organization": "University Program",
-        "period": "Current"
-      }
-    ],
-    "projects": [
-      {
-        "title": "Course and Team Work",
-        "description": "Supports team-based software assignments and development tasks."
-      }
-    ],
-    "certifications": [
-      "Original PDF attached"
-    ]
+    "themeColor": "#6fd0c4"
   },
   {
     "id": "nguyen-trong-hiep",
     "name": "Nguyen Trong Hiep",
     "role": "Software Engineering Student",
-    "tagline": "Part of the team’s software track and represented with the original CV PDF for full detail.",
-    "location": "Vietnam",
-    "email": "",
-    "phone": "",
-    "linkedin": "",
-    "github": "",
-    "website": "",
+    "tagline": "Strong in collaborative teamwork and consistent project support.",
     "photo": "",
     "cvPdf": "assets/cv/nguyen-trong-hiep.pdf",
-    "themeColor": "#f0c987",
-    "summary": "Nguyen Trong Hiep’s profile is linked to the original PDF CV provided in the workspace. The local PDF extraction was limited, so the page keeps a professional summary while preserving direct access to the official CV document for complete and accurate information.",
-    "skills": [
-      { "name": "Software Fundamentals", "level": 78 },
-      { "name": "Project Participation", "level": 80 },
-      { "name": "Communication", "level": 77 },
-      { "name": "Growth Mindset", "level": 84 }
-    ],
-    "experience": [
-      {
-        "title": "Student Developer",
-        "company": "Team Coursework",
-        "period": "Current",
-        "bullets": [
-          "Contributes to practical team assignments and software delivery tasks.",
-          "Keeps the original attached CV as the source of truth for complete profile information."
-        ]
-      }
-    ],
-    "education": [
-      {
-        "title": "Software Engineering",
-        "organization": "University Program",
-        "period": "Current"
-      }
-    ],
-    "projects": [
-      {
-        "title": "Collaborative Coursework",
-        "description": "Participates in shared implementation, delivery, and review work across team assignments."
-      }
-    ],
-    "certifications": [
-      "Original PDF attached"
-    ]
+    "themeColor": "#f0c987"
+  },
+  {
+    "id": "doan-dinh-diap",
+    "name": "Doan Dinh Diap",
+    "role": "Software Engineering Student",
+    "tagline": "Strong in adaptability, learning mindset, and team collaboration.",
+    "photo": "",
+    "cvPdf": "assets/cv/member-cv.pdf",
+    "themeColor": "#d6c4ff"
   }
 ]
