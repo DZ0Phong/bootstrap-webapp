@@ -7,44 +7,44 @@
     <title>Member CV</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #f6f8fc;
-            --surface: rgba(255, 255, 255, 0.94);
-            --surface-soft: #eef3fb;
-            --text: #162033;
-            --muted: #667085;
-            --line: #d9e3f2;
-            --accent: #1f5bd9;
-            --accent-soft: rgba(31, 91, 217, 0.12);
-            --shadow: 0 26px 60px rgba(15, 23, 42, 0.1);
+            --bg: #f5f0e8;
+            --surface: rgba(255, 252, 247, 0.94);
+            --surface-soft: #f4ede1;
+            --text: #201f24;
+            --muted: #71675c;
+            --line: #ddd1c0;
+            --accent: #7a5b2f;
+            --accent-soft: rgba(122, 91, 47, 0.1);
+            --shadow: 0 26px 60px rgba(54, 40, 22, 0.1);
         }
 
         body {
             margin: 0;
             min-height: 100vh;
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-family: 'Manrope', sans-serif;
             color: var(--text);
             background:
-                radial-gradient(circle at top left, rgba(31, 91, 217, 0.12), transparent 22%),
-                linear-gradient(180deg, #fbfcff 0%, var(--bg) 100%);
+                radial-gradient(circle at top left, rgba(122, 91, 47, 0.12), transparent 18%),
+                linear-gradient(180deg, #fcfaf7 0%, var(--bg) 100%);
             transition: background 0.3s ease, color 0.3s ease;
         }
 
         body.dark {
-            --bg: #0f1729;
-            --surface: rgba(15, 23, 42, 0.92);
-            --surface-soft: #15213a;
-            --text: #edf2ff;
-            --muted: #b7c2d9;
-            --line: rgba(148, 163, 184, 0.22);
-            --accent: #91b7ff;
-            --accent-soft: rgba(145, 183, 255, 0.18);
+            --bg: #10141c;
+            --surface: rgba(18, 22, 31, 0.94);
+            --surface-soft: #171d29;
+            --text: #f3ede2;
+            --muted: #b9aa96;
+            --line: rgba(206, 184, 153, 0.18);
+            --accent: #d6bc8d;
+            --accent-soft: rgba(214, 188, 141, 0.14);
             --shadow: 0 26px 60px rgba(0, 0, 0, 0.34);
             background:
-                radial-gradient(circle at top left, rgba(99, 102, 241, 0.12), transparent 22%),
-                linear-gradient(180deg, #0a1020 0%, var(--bg) 100%);
+                radial-gradient(circle at top left, rgba(214, 188, 141, 0.09), transparent 20%),
+                linear-gradient(180deg, #0a0d14 0%, var(--bg) 100%);
         }
 
         .page-shell {
@@ -81,11 +81,12 @@
             text-decoration: none;
             font-weight: 700;
             box-shadow: var(--shadow);
+            backdrop-filter: blur(12px);
         }
 
         .cv-paper {
             background: var(--surface);
-            border: 1px solid rgba(255, 255, 255, 0.72);
+            border: 1px solid rgba(255, 255, 255, 0.55);
             border-radius: 32px;
             padding: 34px;
             box-shadow: var(--shadow);
@@ -110,11 +111,12 @@
         }
 
         .name {
-            font-family: 'DM Serif Display', serif;
+            font-family: 'Cormorant Garamond', serif;
             font-size: clamp(2.8rem, 6vw, 4.8rem);
             color: var(--accent);
             margin: 0;
             line-height: 0.95;
+            letter-spacing: 0.01em;
         }
 
         .role {
@@ -169,6 +171,8 @@
             color: var(--accent);
             border-bottom: 1px solid var(--line);
             padding-bottom: 10px;
+            font-family: 'Cormorant Garamond', serif;
+            letter-spacing: 0.01em;
         }
 
         .summary-text {
@@ -197,7 +201,7 @@
         }
 
         .progress-bar {
-            background: linear-gradient(90deg, var(--accent), #69a3ff);
+            background: linear-gradient(90deg, var(--accent), #d5b784);
         }
 
         .timeline-item + .timeline-item {
